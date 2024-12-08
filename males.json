@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Gasprom",
+        "desc": "",
+        "txt": "",
+        "image": "public/cats/males/Gasprom/38cc2f79-66c8-44df-8ffa-1b7f4541d2dd-1500w.jpeg",
+        "images": [
+            "public/cats/males/Gasprom/38cc2f79-66c8-44df-8ffa-1b7f4541d2dd-1500w.jpeg"
+        ]
+    },
+    {
+        "name": "Xtrail",
+        "desc": "Cream classic tabby with white and blue eyes\n",
+        "txt": "",
+        "image": "public/cats/males/Xtrail/e7e0fd69-991d-4218-90ed-037a182c3cd2-1500w.jpeg",
+        "images": [
+            "public/cats/males/Xtrail/e7e0fd69-991d-4218-90ed-037a182c3cd2-1500w.jpeg"
+        ]
+    },
+    {
+        "name": "Wolter",
+        "desc": "Black silver ticked tabby\n",
+        "txt": "",
+        "image": "public/cats/males/Wolter/375320074_6355865797843984_6897816705362881062_n-1500h.jpg",
+        "images": [
+            "public/cats/males/Wolter/375320074_6355865797843984_6897816705362881062_n-1500h.jpg"
+        ]
+    }
+]

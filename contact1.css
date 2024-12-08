@@ -212,12 +212,13 @@
 .contact1-text {
   fill: var(--dl-color-custom-primary1);
   color: var(--dl-color-custom-primary1);
-  font-size: 3rem;
+  font-size: 32px;
   font-style: normal;
   text-align: center;
-  font-family: "Inter";
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: 500;
-  margin-bottom: var(--dl-space-space-threeunits);
+  margin-bottom: 30px;
+  
 }
 .contact1-form {
   width: 282px;
@@ -225,7 +226,6 @@
   display: flex;
   position: relative;
   align-items: flex-start;
-  margin-bottom: 69px;
   flex-direction: column;
 }
 .contact1-textinput {
@@ -271,6 +271,7 @@
   align-self: center;
   align-items: flex-start;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 .contact1-text1 {
   fill: var(--dl-color-custom-primary1);
