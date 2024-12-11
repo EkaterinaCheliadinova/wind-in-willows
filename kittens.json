@@ -1,5 +1,17 @@
 [
     {
+        "name": "Demi moore",
+        "desc": "Demi moore, female\nDate of birth : 24.07.2024\n\n",
+        "txt": "🩷 Gender : female\n⚫️ color : fs\n🐾 Date of birth : 24.07.2024\n",
+        "image": "public/cats/kittens/Demi moore/0ad1b64a-1d8a-46e4-9806-d34b6ab5696f.jpeg",
+        "images": [
+            "public/cats/kittens/Demi moore/0ad1b64a-1d8a-46e4-9806-d34b6ab5696f.jpeg",
+            "public/cats/kittens/Demi moore/cb15c50c-426f-4994-a21b-14ee5e4520be.jpeg",
+            "public/cats/kittens/Demi moore/8ce0d6d9-76be-4ede-bd59-186f11822c10.jpeg",
+            "public/cats/kittens/Demi moore/e76b12ed-ced5-4f95-a96b-4aa8bbc0660a.jpeg"
+        ]
+    },
+    {
         "name": "Heloise",
         "desc": "Data of birth : 19.07.2024\nColor : g 22 09 (blue tortie classic tabby with silver)\nBlue eyes\n",
         "txt": "Data of birth : 19.07.2024\nColor : g 22 09 (blue tortie classic tabby with silver)\nBlue eyes",
@@ -9,18 +21,6 @@
             "public/cats/kittens/Heloise/acbf1f3e-d1a7-409d-bdf5-686adf6f0089.jpeg",
             "public/cats/kittens/Heloise/5342286e-140d-40b9-a47c-c565518786d5.jpeg",
             "public/cats/kittens/Heloise/5deee996-75fe-4031-8045-f354174942a9.jpeg"
-        ]
-    },
-    {
-        "name": "Indra",
-        "desc": "Indra, female\nDate of birth : 24.07.2024\n\n",
-        "txt": "🩷 Gender : female\n⚫️ color : fs\n🐾 Date of birth : 24.07.2024\n",
-        "image": "public/cats/kittens/Indra/93e39dfa-8228-4a4f-b94a-3c63916a0a4e.jpeg",
-        "images": [
-            "public/cats/kittens/Indra/93e39dfa-8228-4a4f-b94a-3c63916a0a4e.jpeg",
-            "public/cats/kittens/Indra/35a41a23-9ba2-4eb4-bec4-db0e48f1b747.jpeg",
-            "public/cats/kittens/Indra/60902a2f-1aca-4437-86d7-594bff1f6c1d.jpeg",
-            "public/cats/kittens/Indra/8fc01592-65b1-4fa1-8848-967c2ea880b8.jpeg"
         ]
     }
 ]
