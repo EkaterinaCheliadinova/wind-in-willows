@@ -1,5 +1,17 @@
 [
     {
+        "name": "Tusya",
+        "desc": "Tusya, female, blue eyes\n",
+        "txt": "😺 Name : Tusya\n🩷 Gender : female\n🟤 color : fs 03 61 (black smoke tortie with white, blue eyes)\n👁 Eyes : blue\n🐾 Date of birth : 25.10.2024\n",
+        "image": "public/cats/kittens/Tusya/0.jpeg",
+        "images": [
+            "public/cats/kittens/Tusya/0.jpeg",
+            "public/cats/kittens/Tusya/997f3442e-c952-449e-8c38-7399f613fcad.jpeg",
+            "public/cats/kittens/Tusya/1.jpeg",
+            "public/cats/kittens/Tusya/01.jpeg"
+        ]
+    },
+    {
         "name": "Demi moore",
         "desc": "Demi moore, female\nDate of birth : 24.07.2024\n\n",
         "txt": "🩷 Gender : female\n⚫️ color : fs\n🐾 Date of birth : 24.07.2024\n",
