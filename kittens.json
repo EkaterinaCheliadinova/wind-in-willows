@@ -1,14 +1,14 @@
 [
     {
-        "name": "Tusya",
-        "desc": "Tusya, female, blue eyes\n",
-        "txt": "😺 Name : Tusya\n🩷 Gender : female\n🟤 color : fs 03 61 (black smoke tortie with white, blue eyes)\n👁 Eyes : blue\n🐾 Date of birth : 25.10.2024\n",
-        "image": "public/cats/kittens/Tusya/0.jpeg",
+        "name": "Blue Eyes",
+        "desc": "Male, polydactyl with blue eyes\n",
+        "txt": "🩵 Gender : male\n⚫️ color : ns 22 03\n👁 Eyes : blue\n🖐 polydactyle : 6666\n🐾 Date of birth : 27.10.2024\n",
+        "image": "public/cats/kittens/Blue Eyes/cc73f3e2-058d-4f07-85f6-75bfe8694c88.jpeg",
         "images": [
-            "public/cats/kittens/Tusya/0.jpeg",
-            "public/cats/kittens/Tusya/997f3442e-c952-449e-8c38-7399f613fcad.jpeg",
-            "public/cats/kittens/Tusya/1.jpeg",
-            "public/cats/kittens/Tusya/01.jpeg"
+            "public/cats/kittens/Blue Eyes/cc73f3e2-058d-4f07-85f6-75bfe8694c88.jpeg",
+            "public/cats/kittens/Blue Eyes/b54e819f-9e90-4c06-8db4-4cd9002d5e1a.jpeg",
+            "public/cats/kittens/Blue Eyes/0aaa9ba6-263d-4eb5-83e4-8337a23cd686.jpeg",
+            "public/cats/kittens/Blue Eyes/5e12287f-0893-4728-9636-ef8264b21c68.jpeg"
         ]
     },
     {
@@ -21,6 +21,18 @@
             "public/cats/kittens/Demi moore/cb15c50c-426f-4994-a21b-14ee5e4520be.jpeg",
             "public/cats/kittens/Demi moore/8ce0d6d9-76be-4ede-bd59-186f11822c10.jpeg",
             "public/cats/kittens/Demi moore/e76b12ed-ced5-4f95-a96b-4aa8bbc0660a.jpeg"
+        ]
+    },
+    {
+        "name": "Male",
+        "desc": "Male, polydactyl with blue eyes\n",
+        "txt": "🩵 Gender : male\n⚫️ color : n 22 03\n👁 Eyes : blue\n🖐 polydactyle : 6666\n🐾 Date of birth : 27.10.2024\n",
+        "image": "public/cats/kittens/Male/ac7b9e25-d022-4d28-83f2-5d9b6f2e2a33.jpeg",
+        "images": [
+            "public/cats/kittens/Male/ac7b9e25-d022-4d28-83f2-5d9b6f2e2a33.jpeg",
+            "public/cats/kittens/Male/7031b43d-9e2e-4014-aa3b-d7b4dd869bf6.jpeg",
+            "public/cats/kittens/Male/5c31806b-8d10-4548-b26a-008cd2e1f401.jpeg",
+            "public/cats/kittens/Male/13931732-572b-45ea-a784-8e0a08a65bc9.jpeg"
         ]
     },
     {
