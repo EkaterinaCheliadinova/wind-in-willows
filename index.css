@@ -313,19 +313,22 @@
 .home-hero {
   flex: 0 0 auto;
   width: 100%;
-  height: auto;
+  height: auto; /* Allow height to adjust */
   display: flex;
-  margin-top: 60px;
+  margin-top: 70px;
   align-items: flex-start;
   justify-content: center;
+  /* Optional: Set a max-width if needed */
+  overflow: hidden; /* Prevent unwanted scrolling */
 }
+
 .home-hero1 {
-  height: 874px;
-  /* padding-bottom: 59px; */
+  min-height: 300px; /* Fallback minimum height (adjust as needed) */
   background-color: var(--dl-color-custom-secondary1);
-  background-image: url(public/external/homepagepsd5.jpg);
+  background-image: url(public/external/homepagepsd4.jpg);
   background-position: center;
-  background-size: cover;
+  background-size: cover; /* Ensures image covers area while cropping edges */
+  background-repeat: no-repeat;
 }
 .home-container01 {
   margin-bottom: 10%;
