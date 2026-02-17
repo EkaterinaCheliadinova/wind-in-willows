@@ -1,0 +1,203 @@
+/* ===========================
+   HOMEPAGE — index.html
+   =========================== */
+
+/* About preview on homepage */
+.home-about {
+  background-color: var(--color-white);
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+}
+
+/* Showcase section */
+.home-showcase {
+  background-color: var(--color-cream);
+}
+
+.home-showcase .gallery-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 768px) {
+  .home-showcase .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-showcase .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===========================
+   ABOUT US — about-us.html
+   =========================== */
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+.about-content__text h2 {
+  margin-bottom: var(--space-md);
+}
+
+.about-content__text p {
+  margin-bottom: var(--space-md);
+  line-height: 1.8;
+}
+
+.about-content__image {
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 420px;
+  justify-self: center;
+}
+
+.about-content__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 320px));
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  justify-content: center;
+}
+
+.about-gallery img {
+  width: 100%;
+  border-radius: 0;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .about-gallery {
+    grid-template-columns: minmax(0, 320px);
+    justify-content: center;
+  }
+}
+
+/* ===========================
+   MALES / FEMALES / KITTENS — gallery pages
+   =========================== */
+.gallery-page .hero--page {
+  padding: var(--space-xl) 0;
+}
+
+.gallery-page__intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--space-xl);
+}
+
+.gallery-page__intro p {
+  font-size: 0.95rem;
+}
+
+.gallery-page__intro a {
+  color: var(--color-amber);
+  font-weight: 500;
+}
+
+/* ===========================
+   CONTACT — contact.html
+   =========================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.contact-grid__right {
+  padding-top: var(--space-md);
+}
+
+.contact-grid__right h3 {
+  margin-bottom: var(--space-md);
+}
+
+.phone-list {
+  margin-top: var(--space-md);
+}
+
+.phone-list__item {
+  margin-bottom: var(--space-sm);
+}
+
+.phone-list__name {
+  font-weight: 600;
+  color: var(--color-brown-dark);
+  font-size: 0.9rem;
+}
+
+.phone-list__number {
+  color: var(--color-amber);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+/* ===========================
+   POLICIES — policies.html
+   =========================== */
+.policies-section {
+  background-color: var(--color-white);
+}
+
+/* ===========================
+   CAT DETAIL PAGES
+   =========================== */
+.detail-section {
+  background-color: var(--color-white);
+  padding: var(--space-md) 0;
+}
+
+@media (max-width: 768px) {
+  .detail-section {
+    padding: var(--space-sm) 0 var(--space-md);
+  }
+}
+
+/* ===========================
+   KITTENS — info box
+   =========================== */
+.info-box {
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-cream-dark);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+.info-box p {
+  font-size: 0.95rem;
+}
+
+.info-box a {
+  color: var(--color-amber);
+  font-weight: 600;
+}

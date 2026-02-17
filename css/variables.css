@@ -1,0 +1,46 @@
+:root {
+  /* Color Palette — derived from hero image (wind-in-willows.png) */
+  --color-cream:        #f9efbf;
+  --color-cream-light:  #fdf8e3;
+  --color-cream-dark:   #f0e2a0;
+  --color-brown:        #6b4226;
+  --color-brown-light:  #8b6342;
+  --color-brown-dark:   #3d2415;
+  --color-amber:        #c47a2a;
+  --color-amber-dark:   #a05e1a;
+  --color-olive:        #7a8a3a;
+  --color-olive-dark:   #5e6e2a;
+  --color-white:        #fffef9;
+  --color-black:        #2a1f14;
+
+  /* Spacing */
+  --space-xs:   8px;
+  --space-sm:   16px;
+  --space-md:   24px;
+  --space-lg:   32px;
+  --space-xl:   48px;
+  --space-2xl:  64px;
+  --space-3xl:  96px;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  /* Sizing */
+  --max-width:    1200px;
+  --navbar-height: 72px;
+
+  /* Border radius */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-pill:  50px;
+
+  /* Shadows */
+  --shadow-sm:   0 1px 3px rgba(42, 31, 20, 0.08);
+  --shadow-md:   0 4px 12px rgba(42, 31, 20, 0.1);
+  --shadow-lg:   0 8px 24px rgba(42, 31, 20, 0.12);
+
+  /* Transitions */
+  --transition:  0.3s ease;
+}
