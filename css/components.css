@@ -217,7 +217,7 @@
 .hero-home__image {
   width: 100%;
   height: 600px;
-  background-image: url('../public/wind-in-willows.png');
+  background-image: url('../public/wind-in-willows.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -324,7 +324,7 @@
     background-size: cover;
     background-position: center center;
     background-color: var(--color-cream);
-    background-image: url('../public/wind-in-willows-phone.png');
+    background-image: url('../public/wind-in-willows-phone.jpg');
   }
 
   .hero-home__content {
