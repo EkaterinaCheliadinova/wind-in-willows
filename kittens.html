@@ -34,7 +34,7 @@
       document.querySelector('.navbar__burger').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.add('active'); });
       document.querySelector('.mobile-menu__close').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.remove('active'); });
 
-      fetch('kittens.json').then(function(r) { return r.json(); }).then(function(data) {
+      fetch('kittens.json', { cache: 'no-store' }).then(function(r) { return r.json(); }).then(function(data) {
         var gallery = document.getElementById('gallery');
         data.forEach(function(item) {
           var cardImage = item.thumbnail || item.image;

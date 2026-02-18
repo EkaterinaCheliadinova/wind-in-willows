@@ -33,7 +33,7 @@
       document.querySelector('.mobile-menu__close').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.remove('active'); });
 
       var catName = decodeURIComponent(window.location.hash.substring(1));
-      fetch('kittens.json').then(function(r) { return r.json(); }).then(function(data) {
+      fetch('kittens.json', { cache: 'no-store' }).then(function(r) { return r.json(); }).then(function(data) {
         console.log('Current URL:', window.location.href);
         console.log('Hash:', window.location.hash);
         console.log('Looking for cat:', catName);

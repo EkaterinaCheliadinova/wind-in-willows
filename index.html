@@ -257,7 +257,7 @@
 
     <script>
       // Load kittens showcase
-      fetch('kittens.json').then(function(r) { return r.json(); }).then(function(data) {
+      fetch('kittens.json', { cache: 'no-store' }).then(function(r) { return r.json(); }).then(function(data) {
         var gallery = document.getElementById('showcase-gallery');
         data.slice(0, 4).forEach(function(item) {
           var cardImage = item.thumbnail || item.image;
