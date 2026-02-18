@@ -18,5 +18,5 @@ public/cats/kittens/**/*.m4v
 public/cats/kittens/**/*.avi
 public/cats/kittens/**/*.mkv
 public/cats/kittens/**/*.webm
-!public/cats/kittens/**/_thumbs/
-!public/cats/kittens/**/_thumbs/*.jpg
+!public/cats/kittens/**/thumbs/
+!public/cats/kittens/**/thumbs/*.jpg
