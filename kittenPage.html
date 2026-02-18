@@ -42,14 +42,15 @@
         console.log('Found cat:', cat);
         var container = document.getElementById('cat-detail');
         if (cat) {
+          var fullImages = Array.isArray(cat.images) ? cat.images : [];
+          var previewImages = Array.isArray(cat.thumbs) && cat.thumbs.length === fullImages.length ? cat.thumbs : fullImages;
           document.title = cat.name + ' \u2014 Wind in Willows';
           var descText = cat.txt ? cat.txt.replace(/\n/g, '<br>') : (cat.desc || '');
-          var infoHtml = '<div class="cat-detail__info"><h1>' + cat.name + '</h1><div class="cat-detail__desc">' + descText + '</div></div>';
-          var galleryHtml = '<div class="cat-detail__gallery">';
-          cat.images.forEach(function(url, index) {
-            galleryHtml += '<button class="cat-detail__thumb" type="button" data-index="' + index + '" aria-label="Open photo ' + (index + 1) + '"><img src="' + url + '" alt="' + cat.name + '" /></button>';
+          var infoHtml = '<div class="cat-detail__info"><h1>' + cat.name + '</h1><div class="cat-detail__desc">' + descText + '</div><div class="cat-detail__gallery" style="grid-template-columns: repeat(3, minmax(0, 1fr));">';
+          previewImages.forEach(function(url, index) {
+            infoHtml += '<button class="cat-detail__thumb" type="button" data-index="' + index + '" aria-label="Open photo ' + (index + 1) + '"><img src="' + url + '" alt="' + cat.name + '" /></button>';
           });
-          galleryHtml += '</div>';
+          infoHtml += '</div></div>';
           var lightboxHtml = '' +
             '<div class="cat-lightbox" aria-hidden="true">' +
               '<button class="cat-lightbox__close" type="button" aria-label="Close viewer">&times;</button>' +
@@ -58,8 +59,8 @@
               '<button class="cat-lightbox__next" type="button" aria-label="Next photo">&#10095;</button>' +
               '<div class="cat-lightbox__counter"></div>' +
             '</div>';
-          container.innerHTML = infoHtml + galleryHtml + lightboxHtml;
-          setupLightbox(container, cat.images);
+          container.innerHTML = infoHtml + lightboxHtml;
+          setupLightbox(container, fullImages);
         } else { container.innerHTML = '<p>Cat not found.</p>'; }
       }).catch(function(error) {
         console.error('Error loading kitten:', error);
@@ -74,7 +75,7 @@
         var prevBtn = container.querySelector('.cat-lightbox__prev');
         var nextBtn = container.querySelector('.cat-lightbox__next');
         var counter = container.querySelector('.cat-lightbox__counter');
-        if (!thumbs.length || !lightbox || !lightboxImg) return;
+        if (!thumbs.length || !lightbox || !lightboxImg || !images || !images.length) return;
 
         var currentIndex = 0;
 

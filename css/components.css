@@ -842,12 +842,14 @@
    CAT DETAIL PAGE
    =========================== */
 .cat-detail {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-2xl);
-  align-items: start;
-  max-width: 1100px;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
+}
+
+.cat-detail__info {
+  width: 100%;
+  grid-column: 1 / -1;
 }
 
 .cat-detail__info h1 {
@@ -862,11 +864,11 @@
 
 .cat-detail__gallery {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-sm);
   width: 100%;
-  max-width: 760px;
-  margin: 0 auto;
+  max-width: none;
+  margin-top: var(--space-md);
 }
 
 .cat-detail__thumb {
@@ -965,15 +967,6 @@
 }
 
 @media (max-width: 768px) {
-  .cat-detail {
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
-  }
-
-  .cat-detail__gallery {
-    grid-template-columns: 1fr;
-  }
-
   .cat-lightbox {
     padding: 12px;
   }

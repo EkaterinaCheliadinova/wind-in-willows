@@ -1,0 +1,3 @@
+Gender : male
+Details : a 03 blue solid white
+Date of birth : 20.10.2025

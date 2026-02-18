@@ -1,0 +1,3 @@
+Gender : male
+Details : a 22 blue classic tabby
+Date of birth : 20.10.2025

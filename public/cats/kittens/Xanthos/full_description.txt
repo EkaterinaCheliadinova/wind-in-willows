@@ -1,0 +1,3 @@
+Gender : male
+Details : n black solid
+Date of birth : 17.10.25

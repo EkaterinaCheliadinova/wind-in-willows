@@ -1,0 +1,3 @@
+Gender : female
+Details : n blue solid polidactyl
+Date of birth : 18.08.25

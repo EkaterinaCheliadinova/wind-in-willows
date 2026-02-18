@@ -12,6 +12,8 @@
 /* Showcase section */
 .home-showcase {
   background-color: var(--color-cream);
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
 }
 
 .home-showcase .gallery-grid {
@@ -19,6 +21,11 @@
 }
 
 @media (max-width: 768px) {
+  .home-showcase {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
   .home-showcase .gallery-grid {
     grid-template-columns: 1fr;
   }

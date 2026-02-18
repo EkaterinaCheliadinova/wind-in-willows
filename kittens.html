@@ -37,10 +37,11 @@
       fetch('kittens.json').then(function(r) { return r.json(); }).then(function(data) {
         var gallery = document.getElementById('gallery');
         data.forEach(function(item) {
+          var cardImage = item.thumbnail || item.image;
           var link = document.createElement('a');
           link.href = 'kittenPage.html#' + encodeURIComponent(item.name);
           link.className = 'card';
-          link.innerHTML = '<div class="card__image-wrapper"><img src="' + item.image + '" alt="' + item.name + '" class="card__image" /><div class="card__overlay"><div class="card__name">' + item.name + '</div><div class="card__desc">' + item.desc + '</div></div></div>';
+          link.innerHTML = '<div class="card__image-wrapper"><img src="' + cardImage + '" alt="' + item.name + '" class="card__image" /><div class="card__overlay"><div class="card__name">' + item.name + '</div><div class="card__desc">' + item.desc + '</div></div></div>';
           gallery.appendChild(link);
         });
       }).catch(function(error) {

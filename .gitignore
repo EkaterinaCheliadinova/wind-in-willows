@@ -1,1 +1,22 @@
 .vscode
+__pycache__/
+drive_client_secret.json
+drive_token.json
+drive_service_account.json
+
+# Local Drive sync media (keep thumbnails/text, ignore full-size media)
+public/cats/kittens/**/*.jpg
+public/cats/kittens/**/*.jpeg
+public/cats/kittens/**/*.png
+public/cats/kittens/**/*.webp
+public/cats/kittens/**/*.gif
+public/cats/kittens/**/*.heic
+public/cats/kittens/**/*.heif
+public/cats/kittens/**/*.mp4
+public/cats/kittens/**/*.mov
+public/cats/kittens/**/*.m4v
+public/cats/kittens/**/*.avi
+public/cats/kittens/**/*.mkv
+public/cats/kittens/**/*.webm
+!public/cats/kittens/**/_thumbs/
+!public/cats/kittens/**/_thumbs/*.jpg

@@ -1,0 +1,3 @@
+Gender : male
+Details : ds 22 red silver classic tabby
+Date of birth : 09.10.25
