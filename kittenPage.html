@@ -26,6 +26,67 @@
       </div>
     </section>
 
+    <section class="section section--white">
+      <div class="container">
+        <p style="text-align: center; max-width: 600px; margin: 0 auto var(--space-xl);">
+          Have questions about our kittens? We're here to help. Whether you're interested in reserving a kitten or learning about their health and vaccinations, feel free to reach out.
+        </p>
+        <div class="contact-grid">
+          <div>
+            <h3>Kitten Reservation</h3>
+            <form class="form" action="https://formspree.io/f/xovqlvod" method="POST" style="margin-top: var(--space-md);">
+              <div class="form__group">
+                <label class="form__label" for="name">Your name</label>
+                <input type="text" id="name" name="name" required class="form__input" placeholder="Enter your name" />
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="contact">Email or WhatsApp</label>
+                <input type="text" id="contact" name="contact" required class="form__input" placeholder="Your email or WhatsApp number" />
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="adoption_type">Adoption type</label>
+                <select id="adoption_type" name="adoption_type" class="form__select">
+                  <option value="">Select type</option>
+                  <option value="Pet">Pet</option>
+                  <option value="Breed">Breed</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="message">Your message</label>
+                <textarea id="message" name="message" required class="form__textarea" placeholder="Your question or request"></textarea>
+              </div>
+              <button type="submit" class="btn btn--primary">Send Message</button>
+            </form>
+          </div>
+          <div class="contact-grid__right">
+            <h3>Reach Out Directly</h3>
+            <div class="social-links" style="margin-top: var(--space-md);">
+              <a href="https://www.facebook.com/elena.chelyadinova" target="_blank" rel="noreferrer noopener" class="social-link" aria-label="Facebook">
+                <img src="public/icons8-facebook-48.png" alt="Facebook" />
+              </a>
+              <a href="https://wa.me/+33780704461" target="_blank" rel="noreferrer noopener" class="social-link" aria-label="WhatsApp">
+                <img src="public/icons8-whatsapp-48.png" alt="WhatsApp" />
+              </a>
+              <a href="https://www.instagram.com/elenachelyadinova/" target="_blank" rel="noreferrer noopener" class="social-link" aria-label="Instagram">
+                <img src="public/instagram-6338392_640.png" alt="Instagram" />
+              </a>
+            </div>
+            <div class="phone-list">
+              <div class="phone-list__item">
+                <div class="phone-list__name">Elena</div>
+                <div class="phone-list__number">+7 916 414 58 07</div>
+              </div>
+              <div class="phone-list__item">
+                <div class="phone-list__name">Katia</div>
+                <div class="phone-list__number">+33 7 80 70 44 61</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <footer class="footer"><div class="container"><div class="footer__inner"><div><div class="footer__brand">Wind in Willows</div><p class="footer__text">Professional Maine Coon Cattery</p></div><div class="footer__links"><a href="index.html" class="footer__link">Home</a><a href="about-us.html" class="footer__link">About Us</a><a href="males.html" class="footer__link">Males</a><a href="females.html" class="footer__link">Females</a><a href="kittens.html" class="footer__link">Kittens</a><a href="contact.html" class="footer__link">Contact</a><a href="policies.html" class="footer__link">Policies</a></div></div><div class="footer__bottom">&copy; 2009 Wind in Willows. All Rights Reserved.</div></div></footer>
 
     <script>
