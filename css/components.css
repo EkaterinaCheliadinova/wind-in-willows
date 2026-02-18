@@ -967,6 +967,10 @@
 }
 
 @media (max-width: 768px) {
+  .cat-detail__gallery {
+    grid-template-columns: 1fr;
+  }
+
   .cat-lightbox {
     padding: 12px;
   }

@@ -46,7 +46,7 @@
           var previewImages = Array.isArray(cat.thumbs) && cat.thumbs.length === fullImages.length ? cat.thumbs : fullImages;
           document.title = cat.name + ' \u2014 Wind in Willows';
           var descText = cat.txt ? cat.txt.replace(/\n/g, '<br>') : (cat.desc || '');
-          var infoHtml = '<div class="cat-detail__info"><h1>' + cat.name + '</h1><div class="cat-detail__desc">' + descText + '</div><div class="cat-detail__gallery" style="grid-template-columns: repeat(3, minmax(0, 1fr));">';
+          var infoHtml = '<div class="cat-detail__info"><h1>' + cat.name + '</h1><div class="cat-detail__desc">' + descText + '</div><div class="cat-detail__gallery">';
           previewImages.forEach(function(url, index) {
             infoHtml += '<button class="cat-detail__thumb" type="button" data-index="' + index + '" aria-label="Open photo ' + (index + 1) + '"><img src="' + url + '" alt="' + cat.name + '" /></button>';
           });
