@@ -140,6 +140,11 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_JPEG_QUALITY,
         help=f"JPEG quality used for optimized images/thumbnails (default: {DEFAULT_JPEG_QUALITY}).",
     )
+    parser.add_argument(
+        "--thumbs-only",
+        action="store_true",
+        help="Use only thumbnail paths in kittens.json and remove full-size local images after thumbnail generation.",
+    )
     return parser.parse_args()
 
 
@@ -577,6 +582,7 @@ def main() -> int:
                 continue
 
             thumb_paths: List[str] = []
+            thumb_generated_ok: List[bool] = []
             for image_local_path in image_local_paths:
                 thumb_name = f"{image_local_path.stem}__thumb.jpg"
                 thumb_local_path = kitten_dir / THUMB_DIR_NAME / thumb_name
@@ -588,22 +594,32 @@ def main() -> int:
                         args.jpeg_quality,
                     )
                     thumb_paths.append(to_web_path(thumb_local_path, project_root))
+                    thumb_generated_ok.append(True)
                 except Exception as exc:
                     print(
                         f"Warning: could not generate thumbnail for '{image_local_path.name}': {exc}",
                         file=sys.stderr,
                     )
                     thumb_paths.append(to_web_path(image_local_path, project_root))
+                    thumb_generated_ok.append(False)
+
+            if args.thumbs_only and thumb_paths:
+                for index, image_local_path in enumerate(image_local_paths):
+                    if index < len(thumb_generated_ok) and thumb_generated_ok[index] and image_local_path.exists():
+                        image_local_path.unlink()
+                display_paths = thumb_paths
+            else:
+                display_paths = image_paths
 
             kittens_payload.append(
                 {
                     "name": kitten_name,
                     "desc": gender,
                     "txt": full_text,
-                    "image": image_paths[0],
-                    "thumbnail": thumb_paths[0] if thumb_paths else image_paths[0],
-                    "images": image_paths,
-                    "thumbs": thumb_paths,
+                    "image": display_paths[0],
+                    "thumbnail": thumb_paths[0] if thumb_paths else display_paths[0],
+                    "images": display_paths,
+                    "thumbs": thumb_paths if thumb_paths else display_paths,
                     "videos": video_paths,
                 }
             )

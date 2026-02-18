@@ -5,7 +5,7 @@ DRIVE_ROOT_ID ?= 1wSbweAapltIgdjl-Fs9oeKcsQpsi9eUt
 THUMB_SIZE ?= 900
 MAX_IMAGE_EDGE ?= 1600
 JPEG_QUALITY ?= 86
-SYNC_FLAGS ?= --skip-videos --wipe-output --thumb-size $(THUMB_SIZE) --max-image-edge $(MAX_IMAGE_EDGE) --jpeg-quality $(JPEG_QUALITY)
+SYNC_FLAGS ?= --skip-videos --wipe-output --thumb-size $(THUMB_SIZE) --max-image-edge $(MAX_IMAGE_EDGE) --jpeg-quality $(JPEG_QUALITY) --thumbs-only
 
 .PHONY: run serve sync-kittens install-drive-deps regen-descriptions
 
@@ -16,7 +16,6 @@ serve:
 	@$(PYTHON) -m http.server $(PORT) --bind $(HOST)
 
 sync-kittens:
-
 	@$(PYTHON) sync_kittens_from_drive.py $(if $(DRIVE_ROOT_ID),--root-folder-id $(DRIVE_ROOT_ID),) $(SYNC_FLAGS)
 
 install-drive-deps:
