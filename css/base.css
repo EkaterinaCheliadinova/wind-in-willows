@@ -8,6 +8,7 @@
 html {
   line-height: 1.6;
   scroll-behavior: smooth;
+  scroll-padding-top: var(--navbar-height);
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
 }
@@ -18,6 +19,7 @@ body {
   font-weight: 400;
   color: var(--color-brown);
   background-color: var(--color-cream);
+  padding-top: var(--navbar-height);
   overflow-x: hidden;
 }
 
