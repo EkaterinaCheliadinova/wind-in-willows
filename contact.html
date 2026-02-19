@@ -99,6 +99,46 @@
     <script>
       document.querySelector('.navbar__burger').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.add('active'); });
       document.querySelector('.mobile-menu__close').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.remove('active'); });
+
+      var reservationForm = document.querySelector('form[action="https://formspree.io/f/xovqlvod"]');
+      if (reservationForm) {
+        reservationForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          var submitButton = reservationForm.querySelector('button[type="submit"]');
+          var defaultButtonText = submitButton ? submitButton.textContent : '';
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+          }
+
+          fetch(reservationForm.action, {
+            method: 'POST',
+            body: new FormData(reservationForm),
+            headers: { Accept: 'application/json' }
+          }).then(function(response) {
+            if (response.ok) {
+              window.location.href = 'thank-you.html';
+              return;
+            }
+
+            return response.json().then(function(data) {
+              var fallbackMessage = 'Unable to send your message. Please try again.';
+              var apiMessage = data && data.errors && data.errors[0] && data.errors[0].message;
+              throw new Error(apiMessage || fallbackMessage);
+            }).catch(function() {
+              throw new Error('Unable to send your message. Please try again.');
+            });
+          }).catch(function(error) {
+            alert(error.message || 'Unable to send your message. Please try again.');
+          }).finally(function() {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = defaultButtonText;
+            }
+          });
+        });
+      }
     </script>
   </body>
 </html>
