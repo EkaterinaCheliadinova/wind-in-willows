@@ -238,6 +238,40 @@
         "videos": []
     },
     {
+        "name": "Vito",
+        "desc": "male",
+        "txt": "Gender : male\nDetails : e 12 cream chinchilla\nDate of birth : 10.10.2025\n",
+        "image": "public/cats/kittens/Vito/thumbs/photo_1_2026-02-21_19-41-56__thumb.jpg",
+        "thumbnail": "public/cats/kittens/Vito/thumbs/photo_1_2026-02-21_19-41-56__thumb.jpg",
+        "images": [
+            "public/cats/kittens/Vito/thumbs/photo_1_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_2_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_3_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_4_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_5_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_6_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_7_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_8_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_9_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_10_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_2026-02-21_19-41-34__thumb.jpg"
+        ],
+        "thumbs": [
+            "public/cats/kittens/Vito/thumbs/photo_1_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_2_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_3_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_4_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_5_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_6_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_7_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_8_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_9_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_10_2026-02-21_19-41-56__thumb.jpg",
+            "public/cats/kittens/Vito/thumbs/photo_2026-02-21_19-41-34__thumb.jpg"
+        ],
+        "videos": []
+    },
+    {
         "name": "Wilder",
         "desc": "male",
         "txt": "Gender : male\nDetails : a 22 blue classic tabby\nDate of birth : 15.10.25\n",

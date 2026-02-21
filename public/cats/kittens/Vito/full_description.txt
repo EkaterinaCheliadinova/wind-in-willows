@@ -1,0 +1,3 @@
+Gender : male
+Details : e 12 cream chinchilla
+Date of birth : 10.10.2025

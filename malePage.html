@@ -6,6 +6,8 @@
     <meta name="theme-color" content="#ffffff" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>Male — Wind in Willows</title>
+    <meta name="description" content="View male Maine Coon profile details, photos, and pedigree information from Wind in Willows Cattery." />
+    <link rel="canonical" href="https://www.wind-in-willows.com/malePage.html" />
     <meta property="og:title" content="Male — Wind in Willows" />
     <meta property="twitter:card" content="summary_large_image" />
     <!-- Google tag (gtag.js) -->
@@ -39,32 +41,89 @@
 
     <footer class="footer"><div class="container"><div class="footer__inner"><div><div class="footer__brand">Wind in Willows</div><p class="footer__text">Professional Maine Coon Cattery</p></div><div class="footer__links"><a href="index.html" class="footer__link">Home</a><a href="about-us.html" class="footer__link">About Us</a><a href="males.html" class="footer__link">Males</a><a href="females.html" class="footer__link">Females</a><a href="kittens.html" class="footer__link">Kittens</a><a href="contact.html" class="footer__link">Contact</a><a href="policies.html" class="footer__link">Policies</a></div></div><div class="footer__bottom">&copy; 2009 Wind in Willows. All Rights Reserved.</div></div></footer>
 
+    <script src="js/site.js"></script>
     <script>
-      document.querySelector('.navbar__burger').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.add('active'); });
-      document.querySelector('.mobile-menu__close').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.remove('active'); });
-
       var catName = decodeURIComponent(window.location.hash.substring(1));
       fetch('males.json').then(function(r) { return r.json(); }).then(function(data) {
         var cat = data.find(function(item) { return item.name === catName; });
         var container = document.getElementById('cat-detail');
         if (cat) {
-          document.title = cat.name + ' \u2014 Wind in Willows';
-          var infoHtml = '<div class="cat-detail__info"><h1>' + cat.name + '</h1><p class="cat-detail__desc">' + (cat.txt || cat.desc || '') + '</p></div>';
-          var galleryHtml = '<div class="cat-detail__gallery">';
-          cat.images.forEach(function(url, index) {
-            galleryHtml += '<button class="cat-detail__thumb" type="button" data-index="' + index + '" aria-label="Open photo ' + (index + 1) + '"><img src="' + url + '" alt="' + cat.name + '" /></button>';
+          var catLabel = cat.name || '';
+          var description = cat.txt || cat.desc || '';
+          var images = Array.isArray(cat.images) ? cat.images : [];
+
+          document.title = catLabel + ' \u2014 Wind in Willows';
+
+          var info = document.createElement('div');
+          info.className = 'cat-detail__info';
+
+          var heading = document.createElement('h1');
+          heading.textContent = catLabel;
+          info.appendChild(heading);
+
+          var desc = document.createElement('p');
+          desc.className = 'cat-detail__desc';
+          desc.textContent = description;
+          info.appendChild(desc);
+
+          var gallery = document.createElement('div');
+          gallery.className = 'cat-detail__gallery';
+
+          images.forEach(function(url, index) {
+            var thumbButton = document.createElement('button');
+            thumbButton.className = 'cat-detail__thumb';
+            thumbButton.type = 'button';
+            thumbButton.setAttribute('data-index', index);
+            thumbButton.setAttribute('aria-label', 'Open photo ' + (index + 1));
+
+            var thumbImage = document.createElement('img');
+            thumbImage.src = url;
+            thumbImage.alt = catLabel;
+            thumbImage.loading = 'lazy';
+            thumbImage.decoding = 'async';
+
+            thumbButton.appendChild(thumbImage);
+            gallery.appendChild(thumbButton);
           });
-          galleryHtml += '</div>';
-          var lightboxHtml = '' +
-            '<div class="cat-lightbox" aria-hidden="true">' +
-              '<button class="cat-lightbox__close" type="button" aria-label="Close viewer">&times;</button>' +
-              '<button class="cat-lightbox__prev" type="button" aria-label="Previous photo">&#10094;</button>' +
-              '<img class="cat-lightbox__img" src="" alt="' + cat.name + '" />' +
-              '<button class="cat-lightbox__next" type="button" aria-label="Next photo">&#10095;</button>' +
-              '<div class="cat-lightbox__counter"></div>' +
-            '</div>';
-          container.innerHTML = infoHtml + galleryHtml + lightboxHtml;
-          setupLightbox(container, cat.images);
+
+          var lightbox = document.createElement('div');
+          lightbox.className = 'cat-lightbox';
+          lightbox.setAttribute('aria-hidden', 'true');
+
+          var closeButton = document.createElement('button');
+          closeButton.className = 'cat-lightbox__close';
+          closeButton.type = 'button';
+          closeButton.setAttribute('aria-label', 'Close viewer');
+          closeButton.textContent = '\u00d7';
+
+          var prevButton = document.createElement('button');
+          prevButton.className = 'cat-lightbox__prev';
+          prevButton.type = 'button';
+          prevButton.setAttribute('aria-label', 'Previous photo');
+          prevButton.textContent = '\u2039';
+
+          var lightboxImage = document.createElement('img');
+          lightboxImage.className = 'cat-lightbox__img';
+          lightboxImage.alt = catLabel;
+          lightboxImage.decoding = 'async';
+
+          var nextButton = document.createElement('button');
+          nextButton.className = 'cat-lightbox__next';
+          nextButton.type = 'button';
+          nextButton.setAttribute('aria-label', 'Next photo');
+          nextButton.textContent = '\u203a';
+
+          var counter = document.createElement('div');
+          counter.className = 'cat-lightbox__counter';
+
+          lightbox.appendChild(closeButton);
+          lightbox.appendChild(prevButton);
+          lightbox.appendChild(lightboxImage);
+          lightbox.appendChild(nextButton);
+          lightbox.appendChild(counter);
+
+          container.replaceChildren(info, gallery, lightbox);
+          setupLightbox(container, images);
         } else { container.innerHTML = '<p>Cat not found.</p>'; }
       }).catch(function(error) {
         console.error('Error loading male:', error);

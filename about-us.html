@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>About Wind in Willows — TICA Maine Coon Cattery Since 2009 | Elena Cheliadinova</title>
     <meta name="description" content="Wind in Willows Maine Coon Cattery was founded by Elena Cheliadinova in Moscow in 2009. TICA registered breeder specializing in blue-eyed, polydactyl, and silver Maine Coons with worldwide shipping and genetic health guarantees." />
+    <link rel="canonical" href="https://www.wind-in-willows.com/about-us.html" />
     <meta property="og:title" content="About Wind in Willows — TICA Maine Coon Cattery Since 2009" />
     <meta property="twitter:card" content="summary_large_image" />
     <!-- Google tag (gtag.js) -->
@@ -87,12 +88,15 @@
             </p>
           </div>
           <div class="about-content__image">
-            <img src="public/external/awards.jpg" alt="Wind in Willows TICA cattery awards and recognition" />
+            <picture>
+              <source srcset="public/external/awards.webp" type="image/webp" />
+              <img src="public/external/awards.jpg" alt="Wind in Willows TICA cattery awards and recognition" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </div>
         <div class="about-gallery">
-          <img src="public/external/1012554_524612404302715_549886926_n-400w.jpg" alt="Our cattery" />
-          <img src="public/external/22256759_1363658953731385_3906750482074579973_o-400h.jpg" alt="Our Maine Coons" />
+          <img src="public/external/1012554_524612404302715_549886926_n-400w.jpg" alt="Our cattery" loading="lazy" decoding="async" />
+          <img src="public/external/22256759_1363658953731385_3906750482074579973_o-400h.jpg" alt="Our Maine Coons" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
@@ -120,13 +124,6 @@
       </div>
     </footer>
 
-    <script>
-      document.querySelector('.navbar__burger').addEventListener('click', function() {
-        document.querySelector('.mobile-menu').classList.add('active');
-      });
-      document.querySelector('.mobile-menu__close').addEventListener('click', function() {
-        document.querySelector('.mobile-menu').classList.remove('active');
-      });
-    </script>
+    <script src="js/site.js"></script>
   </body>
 </html>

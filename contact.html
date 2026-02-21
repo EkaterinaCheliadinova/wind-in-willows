@@ -6,6 +6,8 @@
     <meta name="theme-color" content="#ffffff" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>Contact — Wind in Willows</title>
+    <meta name="description" content="Contact Wind in Willows to reserve a Maine Coon kitten and discuss availability, shipping, and health details." />
+    <link rel="canonical" href="https://www.wind-in-willows.com/contact.html" />
     <meta property="og:title" content="Contact — Wind in Willows" />
     <meta property="twitter:card" content="summary_large_image" />
     <!-- Google tag (gtag.js) -->
@@ -47,8 +49,12 @@
                 <input type="text" id="name" name="name" required class="form__input" placeholder="Enter your name" />
               </div>
               <div class="form__group">
-                <label class="form__label" for="contact">Email or WhatsApp</label>
-                <input type="text" id="contact" name="contact" required class="form__input" placeholder="Your email or WhatsApp number" />
+                <label class="form__label" for="contact">WhatsApp or Email</label>
+                <input type="text" id="contact" name="contact" required class="form__input" placeholder="Your WhatsApp number or email" />
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="city">City</label>
+                <input type="text" id="city" name="city" required class="form__input" placeholder="Enter your city" />
               </div>
               <div class="form__group">
                 <label class="form__label" for="adoption_type">Adoption type</label>
@@ -60,8 +66,8 @@
                 </select>
               </div>
               <div class="form__group">
-                <label class="form__label" for="message">Your message</label>
-                <textarea id="message" name="message" required class="form__textarea" placeholder="Your question or request"></textarea>
+                <label class="form__label" for="message">Your message (please include details)</label>
+                <textarea id="message" name="message" required class="form__textarea" placeholder="Please share your kitten preferences, timeline, household info, and any questions."></textarea>
               </div>
               <button type="submit" class="btn btn--primary">Send Message</button>
             </form>
@@ -70,13 +76,13 @@
             <h3>Reach Out Directly</h3>
             <div class="social-links" style="margin-top: var(--space-md);">
               <a href="https://www.facebook.com/elena.chelyadinova" target="_blank" rel="noreferrer noopener" class="social-link" aria-label="Facebook">
-                <img src="public/icons8-facebook-48.png" alt="Facebook" />
+                <img src="public/icons8-facebook-48.png" alt="Facebook" loading="lazy" decoding="async" />
               </a>
               <a href="https://wa.me/+33780704461" target="_blank" rel="noreferrer noopener" class="social-link" aria-label="WhatsApp">
-                <img src="public/icons8-whatsapp-48.png" alt="WhatsApp" />
+                <img src="public/icons8-whatsapp-48.png" alt="WhatsApp" loading="lazy" decoding="async" />
               </a>
               <a href="https://www.instagram.com/elenachelyadinova/" target="_blank" rel="noreferrer noopener" class="social-link" aria-label="Instagram">
-                <img src="public/instagram-6338392_640.png" alt="Instagram" />
+                <img src="public/instagram-6338392_640.png" alt="Instagram" loading="lazy" decoding="async" />
               </a>
             </div>
             <div class="phone-list">
@@ -96,49 +102,6 @@
 
     <footer class="footer"><div class="container"><div class="footer__inner"><div><div class="footer__brand">Wind in Willows</div><p class="footer__text">Professional Maine Coon Cattery</p></div><div class="footer__links"><a href="index.html" class="footer__link">Home</a><a href="about-us.html" class="footer__link">About Us</a><a href="males.html" class="footer__link">Males</a><a href="females.html" class="footer__link">Females</a><a href="kittens.html" class="footer__link">Kittens</a><a href="contact.html" class="footer__link">Contact</a><a href="policies.html" class="footer__link">Policies</a></div></div><div class="footer__bottom">&copy; 2009 Wind in Willows. All Rights Reserved.</div></div></footer>
 
-    <script>
-      document.querySelector('.navbar__burger').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.add('active'); });
-      document.querySelector('.mobile-menu__close').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.remove('active'); });
-
-      var reservationForm = document.querySelector('form[action="https://formspree.io/f/xovqlvod"]');
-      if (reservationForm) {
-        reservationForm.addEventListener('submit', function(event) {
-          event.preventDefault();
-
-          var submitButton = reservationForm.querySelector('button[type="submit"]');
-          var defaultButtonText = submitButton ? submitButton.textContent : '';
-          if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
-          }
-
-          fetch(reservationForm.action, {
-            method: 'POST',
-            body: new FormData(reservationForm),
-            headers: { Accept: 'application/json' }
-          }).then(function(response) {
-            if (response.ok) {
-              window.location.href = 'thank-you.html';
-              return;
-            }
-
-            return response.json().then(function(data) {
-              var fallbackMessage = 'Unable to send your message. Please try again.';
-              var apiMessage = data && data.errors && data.errors[0] && data.errors[0].message;
-              throw new Error(apiMessage || fallbackMessage);
-            }).catch(function() {
-              throw new Error('Unable to send your message. Please try again.');
-            });
-          }).catch(function(error) {
-            alert(error.message || 'Unable to send your message. Please try again.');
-          }).finally(function() {
-            if (submitButton) {
-              submitButton.disabled = false;
-              submitButton.textContent = defaultButtonText;
-            }
-          });
-        });
-      }
-    </script>
+    <script src="js/site.js"></script>
   </body>
 </html>

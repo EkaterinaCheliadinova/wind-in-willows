@@ -6,6 +6,8 @@
     <meta name="theme-color" content="#ffffff" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>Kitten — Wind in Willows</title>
+    <meta name="description" content="View detailed kitten information, photos, and availability at Wind in Willows Maine Coon Cattery." />
+    <link rel="canonical" href="https://www.wind-in-willows.com/kittenPage.html" />
     <meta property="og:title" content="Kitten — Wind in Willows" />
     <meta property="twitter:card" content="summary_large_image" />
     <!-- Google tag (gtag.js) -->
@@ -52,8 +54,12 @@
                 <input type="text" id="name" name="name" required class="form__input" placeholder="Enter your name" />
               </div>
               <div class="form__group">
-                <label class="form__label" for="contact">Email or WhatsApp</label>
-                <input type="text" id="contact" name="contact" required class="form__input" placeholder="Your email or WhatsApp number" />
+                <label class="form__label" for="contact">WhatsApp or Email</label>
+                <input type="text" id="contact" name="contact" required class="form__input" placeholder="Your WhatsApp number or email" />
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="city">City</label>
+                <input type="text" id="city" name="city" required class="form__input" placeholder="Enter your city" />
               </div>
               <div class="form__group">
                 <label class="form__label" for="adoption_type">Adoption type</label>
@@ -65,8 +71,8 @@
                 </select>
               </div>
               <div class="form__group">
-                <label class="form__label" for="message">Your message</label>
-                <textarea id="message" name="message" required class="form__textarea" placeholder="Your question or request"></textarea>
+                <label class="form__label" for="message">Your message (please include details)</label>
+                <textarea id="message" name="message" required class="form__textarea" placeholder="Please share your kitten preferences, timeline, household info, and any questions."></textarea>
               </div>
               <button type="submit" class="btn btn--primary">Send Message</button>
             </form>
@@ -75,13 +81,13 @@
             <h3>Reach Out Directly</h3>
             <div class="social-links" style="margin-top: var(--space-md);">
               <a href="https://www.facebook.com/elena.chelyadinova" target="_blank" rel="noreferrer noopener" class="social-link" aria-label="Facebook">
-                <img src="public/icons8-facebook-48.png" alt="Facebook" />
+                <img src="public/icons8-facebook-48.png" alt="Facebook" loading="lazy" decoding="async" />
               </a>
               <a href="https://wa.me/+33780704461" target="_blank" rel="noreferrer noopener" class="social-link" aria-label="WhatsApp">
-                <img src="public/icons8-whatsapp-48.png" alt="WhatsApp" />
+                <img src="public/icons8-whatsapp-48.png" alt="WhatsApp" loading="lazy" decoding="async" />
               </a>
               <a href="https://www.instagram.com/elenachelyadinova/" target="_blank" rel="noreferrer noopener" class="social-link" aria-label="Instagram">
-                <img src="public/instagram-6338392_640.png" alt="Instagram" />
+                <img src="public/instagram-6338392_640.png" alt="Instagram" loading="lazy" decoding="async" />
               </a>
             </div>
             <div class="phone-list">
@@ -101,86 +107,111 @@
 
     <footer class="footer"><div class="container"><div class="footer__inner"><div><div class="footer__brand">Wind in Willows</div><p class="footer__text">Professional Maine Coon Cattery</p></div><div class="footer__links"><a href="index.html" class="footer__link">Home</a><a href="about-us.html" class="footer__link">About Us</a><a href="males.html" class="footer__link">Males</a><a href="females.html" class="footer__link">Females</a><a href="kittens.html" class="footer__link">Kittens</a><a href="contact.html" class="footer__link">Contact</a><a href="policies.html" class="footer__link">Policies</a></div></div><div class="footer__bottom">&copy; 2009 Wind in Willows. All Rights Reserved.</div></div></footer>
 
+    <script src="js/site.js"></script>
     <script>
-      document.querySelector('.navbar__burger').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.add('active'); });
-      document.querySelector('.mobile-menu__close').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.remove('active'); });
-
-      var reservationForm = document.querySelector('form[action="https://formspree.io/f/xovqlvod"]');
-      if (reservationForm) {
-        reservationForm.addEventListener('submit', function(event) {
-          event.preventDefault();
-
-          var submitButton = reservationForm.querySelector('button[type="submit"]');
-          var defaultButtonText = submitButton ? submitButton.textContent : '';
-          if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
-          }
-
-          fetch(reservationForm.action, {
-            method: 'POST',
-            body: new FormData(reservationForm),
-            headers: { Accept: 'application/json' }
-          }).then(function(response) {
-            if (response.ok) {
-              window.location.href = 'thank-you.html';
-              return;
-            }
-
-            return response.json().then(function(data) {
-              var fallbackMessage = 'Unable to send your message. Please try again.';
-              var apiMessage = data && data.errors && data.errors[0] && data.errors[0].message;
-              throw new Error(apiMessage || fallbackMessage);
-            }).catch(function() {
-              throw new Error('Unable to send your message. Please try again.');
-            });
-          }).catch(function(error) {
-            alert(error.message || 'Unable to send your message. Please try again.');
-          }).finally(function() {
-            if (submitButton) {
-              submitButton.disabled = false;
-              submitButton.textContent = defaultButtonText;
-            }
-          });
-        });
-      }
-
       var catName = decodeURIComponent(window.location.hash.substring(1));
       fetch('kittens.json', { cache: 'no-store' }).then(function(r) { return r.json(); }).then(function(data) {
-        console.log('Current URL:', window.location.href);
-        console.log('Hash:', window.location.hash);
-        console.log('Looking for cat:', catName);
-        console.log('Available cats:', data.map(function(item) { return item.name; }));
         var cat = data.find(function(item) { return item.name === catName; });
-        console.log('Found cat:', cat);
         var container = document.getElementById('cat-detail');
         if (cat) {
-          var fullImages = Array.isArray(cat.images) ? cat.images : [];
-          var previewImages = Array.isArray(cat.thumbs) && cat.thumbs.length === fullImages.length ? cat.thumbs : fullImages;
-          document.title = cat.name + ' \u2014 Wind in Willows';
-          var descText = cat.txt ? cat.txt.replace(/\n/g, '<br>') : (cat.desc || '');
-          var infoHtml = '<div class="cat-detail__info"><h1>' + cat.name + '</h1><div class="cat-detail__desc">' + descText + '</div><div class="cat-detail__gallery">';
-          previewImages.forEach(function(url, index) {
-            infoHtml += '<button class="cat-detail__thumb" type="button" data-index="' + index + '" aria-label="Open photo ' + (index + 1) + '"><img src="' + url + '" alt="' + cat.name + '" /></button>';
+          var catLabel = cat.name || '';
+          var description = cat.txt || cat.desc || '';
+          var rawFullImages = Array.isArray(cat.images) ? cat.images : [];
+          var rawThumbImages = Array.isArray(cat.thumbs) ? cat.thumbs : [];
+          var fullImages = rawFullImages.length ? rawFullImages.slice() : rawThumbImages.slice();
+          var previewImages = fullImages.map(function(fullUrl, index) {
+            return rawThumbImages[index] || fullUrl;
           });
-          infoHtml += '</div></div>';
-          var lightboxHtml = '' +
-            '<div class="cat-lightbox" aria-hidden="true">' +
-              '<button class="cat-lightbox__close" type="button" aria-label="Close viewer">&times;</button>' +
-              '<button class="cat-lightbox__prev" type="button" aria-label="Previous photo">&#10094;</button>' +
-              '<img class="cat-lightbox__img" src="" alt="' + cat.name + '" />' +
-              '<button class="cat-lightbox__next" type="button" aria-label="Next photo">&#10095;</button>' +
-              '<div class="cat-lightbox__counter"></div>' +
-            '</div>';
-          container.innerHTML = infoHtml + lightboxHtml;
-          setupLightbox(container, fullImages);
+          document.title = catLabel + ' \u2014 Wind in Willows';
+
+          var info = document.createElement('div');
+          info.className = 'cat-detail__info';
+
+          var heading = document.createElement('h1');
+          heading.textContent = catLabel;
+          info.appendChild(heading);
+
+          var desc = document.createElement('div');
+          desc.className = 'cat-detail__desc';
+          desc.textContent = description;
+          info.appendChild(desc);
+
+          var gallery = document.createElement('div');
+          gallery.className = 'cat-detail__gallery';
+          previewImages.forEach(function(url, index) {
+            var thumbButton = document.createElement('button');
+            thumbButton.className = 'cat-detail__thumb';
+            thumbButton.type = 'button';
+            thumbButton.setAttribute('data-index', index);
+            thumbButton.setAttribute('aria-label', 'Open photo ' + (index + 1));
+
+            var thumbImage = document.createElement('img');
+            thumbImage.src = url;
+            thumbImage.alt = catLabel;
+            thumbImage.loading = 'lazy';
+            thumbImage.decoding = 'async';
+
+            var fullFallback = fullImages[index] || '';
+            var fallbackApplied = false;
+            thumbImage.addEventListener('error', function() {
+              if (!fallbackApplied && fullFallback && fullFallback !== url) {
+                fallbackApplied = true;
+                thumbImage.src = fullFallback;
+                return;
+              }
+              thumbButton.style.display = 'none';
+            });
+
+            thumbButton.appendChild(thumbImage);
+            gallery.appendChild(thumbButton);
+          });
+          info.appendChild(gallery);
+
+          var lightbox = document.createElement('div');
+          lightbox.className = 'cat-lightbox';
+          lightbox.setAttribute('aria-hidden', 'true');
+
+          var closeButton = document.createElement('button');
+          closeButton.className = 'cat-lightbox__close';
+          closeButton.type = 'button';
+          closeButton.setAttribute('aria-label', 'Close viewer');
+          closeButton.textContent = '\u00d7';
+
+          var prevButton = document.createElement('button');
+          prevButton.className = 'cat-lightbox__prev';
+          prevButton.type = 'button';
+          prevButton.setAttribute('aria-label', 'Previous photo');
+          prevButton.textContent = '\u2039';
+
+          var lightboxImage = document.createElement('img');
+          lightboxImage.className = 'cat-lightbox__img';
+          lightboxImage.alt = catLabel;
+          lightboxImage.decoding = 'async';
+
+          var nextButton = document.createElement('button');
+          nextButton.className = 'cat-lightbox__next';
+          nextButton.type = 'button';
+          nextButton.setAttribute('aria-label', 'Next photo');
+          nextButton.textContent = '\u203a';
+
+          var counter = document.createElement('div');
+          counter.className = 'cat-lightbox__counter';
+
+          lightbox.appendChild(closeButton);
+          lightbox.appendChild(prevButton);
+          lightbox.appendChild(lightboxImage);
+          lightbox.appendChild(nextButton);
+          lightbox.appendChild(counter);
+
+          container.replaceChildren(info, lightbox);
+          setupLightbox(container, fullImages, previewImages);
         } else { container.innerHTML = '<p>Cat not found.</p>'; }
       }).catch(function(error) {
         console.error('Error loading kitten:', error);
         document.getElementById('cat-detail').innerHTML = '<div style="padding: 2rem; text-align: center; color: var(--color-brown);"><p style="margin-bottom: 1rem;"><strong>Unable to load kitten details. Please run a local server.</strong></p><p>Run <code>npx serve</code> or <code>python -m http.server</code> and open <code>http://localhost:8000</code> in your browser.</p></div>';
       });
 
-      function setupLightbox(container, images) {
+      function setupLightbox(container, images, previewImages) {
         var thumbs = container.querySelectorAll('.cat-detail__thumb');
         var lightbox = container.querySelector('.cat-lightbox');
         var lightboxImg = container.querySelector('.cat-lightbox__img');
@@ -191,11 +222,21 @@
         if (!thumbs.length || !lightbox || !lightboxImg || !images || !images.length) return;
 
         var currentIndex = 0;
+        var lightboxFallbackApplied = false;
 
         function render() {
+          lightboxFallbackApplied = false;
           lightboxImg.src = images[currentIndex];
           counter.textContent = (currentIndex + 1) + ' / ' + images.length;
         }
+
+        lightboxImg.addEventListener('error', function() {
+          var previewFallback = previewImages && previewImages[currentIndex];
+          if (!lightboxFallbackApplied && previewFallback && previewFallback !== images[currentIndex]) {
+            lightboxFallbackApplied = true;
+            lightboxImg.src = previewFallback;
+          }
+        });
 
         function openAt(index) {
           currentIndex = index;

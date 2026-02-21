@@ -35,6 +35,14 @@ def create_json_data(base_path):
             # First image as "image", all as "images"
             image = image_files[0]
             images = image_files
+
+            # Reuse a pre-generated card thumbnail when present.
+            thumbnail_candidates = [
+                os.path.join(cat_folder, f)
+                for f in os.listdir(cat_folder)
+                if f.endswith('-card.webp')
+            ]
+            thumbnail = thumbnail_candidates[0] if thumbnail_candidates else image
             
             # Append the cat's data
             data.append({
@@ -43,6 +51,7 @@ def create_json_data(base_path):
                 "txt": txt,
                 "image": image,
                 "images": images,
+                "thumbnail": thumbnail,
             })
     return data
 

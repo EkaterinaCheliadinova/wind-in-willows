@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>Wind in Willows — TICA Registered Maine Coon Cattery | Blue-Eyed, Polydactyl & Silver Kittens</title>
     <meta name="description" content="Wind in Willows is a TICA-registered Maine Coon cattery founded in 2009, specializing in rare blue-eyed, polydactyl, and silver Maine Coon kittens. Genetic testing, full vaccinations, worldwide shipping to USA, Europe and beyond." />
+    <link rel="canonical" href="https://www.wind-in-willows.com/" />
     <meta name="keywords" content="Maine Coon kittens for sale, blue-eyed Maine Coon, polydactyl Maine Coon, silver Maine Coon, TICA registered Maine Coon cattery, Maine Coon breeder, Maine Coon kittens worldwide" />
     <meta name="author" content="Wind in Willows" />
     <meta property="og:title" content="Maine Coon Kittens for Sale | Wind in Willows" />
@@ -21,8 +22,8 @@
       gtag("config", "AW-17730427004");
     </script>
     <link rel="shortcut icon" href="public/f4db6e9dfab5ee6ea8e1589625c13e30.png" type="image/png" sizes="32x32" />
-    <link rel="preload" as="image" href="public/wind-in-willows.jpg" type="image/jpeg" media="(min-width: 769px)" fetchpriority="high" />
-    <link rel="preload" as="image" href="public/wind-in-willows-phone.jpg" type="image/jpeg" media="(max-width: 768px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="public/wind-in-willows.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="public/wind-in-willows-phone.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -76,10 +77,10 @@
         },
         {
           "@type": "WebPage",
-          "@id": "https://www.wind-in-willows.com/kittens/#webpage",
-          "url": "https://www.wind-in-willows.com/kittens/",
-          "name": "Maine Coon Kittens For Sale | Wind in Willows Cattery",
-          "description": "Discover healthy, socialized Maine Coon kittens raised with love at Wind in Willows Cattery. Learn about our kittens for sale and reserve your new family member.",
+          "@id": "https://www.wind-in-willows.com/#webpage",
+          "url": "https://www.wind-in-willows.com/",
+          "name": "Wind in Willows — TICA Registered Maine Coon Cattery",
+          "description": "Discover healthy, socialized Maine Coon kittens raised with love at Wind in Willows Cattery.",
           "inLanguage": "en-US",
           "isPartOf": {
             "@id": "https://www.wind-in-willows.com/#website"
@@ -154,7 +155,7 @@
           </p>
           <div class="hero-home__buttons">
             <a href="kittens.html" class="btn btn--primary">View Available Kittens</a>
-            <a href="about-us.html" class="btn btn--outline">Read Our Story</a>
+            <a href="#home-contact" class="btn btn--outline">Contact Us</a>
           </div>
         </div>
       </div>
@@ -175,7 +176,10 @@
             <a href="about-us.html" class="btn btn--outline">Learn More About Us</a>
           </div>
           <div class="about-preview__image">
-            <img src="public/external/awards.jpg" alt="Wind in Willows cattery awards and recognition" />
+            <picture>
+              <source srcset="public/external/awards.webp" type="image/webp" />
+              <img src="public/external/awards.jpg" alt="Wind in Willows cattery awards and recognition" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </div>
       </div>
@@ -204,31 +208,31 @@
         </div>
         <div class="faq__list">
           <div class="faq__item">
-            <div class="faq__question">What makes Wind in Willows Maine Coons special?</div>
+            <button class="faq__question" type="button" aria-expanded="false">What makes Wind in Willows Maine Coons special?</button>
             <div class="faq__answer">
               <p>We specialize in rare traits that are difficult to find: blue-eyed Maine Coons, polydactyl (extra-toed) Maine Coons, and stunning silver coat varieties. Our bloodlines carry TICA show champion genetics and have been refined over 15+ years of dedicated breeding.</p>
             </div>
           </div>
           <div class="faq__item">
-            <div class="faq__question">Do you ship Maine Coon kittens internationally?</div>
+            <button class="faq__question" type="button" aria-expanded="false">Do you ship Maine Coon kittens internationally?</button>
             <div class="faq__answer">
               <p>Yes — our kittens have traveled to families across the USA, Canada, Europe, and Asia. We handle all the necessary documentation, health certificates, and logistics to make international shipping as smooth as possible.</p>
             </div>
           </div>
           <div class="faq__item">
-            <div class="faq__question">Are your kittens health tested and vaccinated?</div>
+            <button class="faq__question" type="button" aria-expanded="false">Are your kittens health tested and vaccinated?</button>
             <div class="faq__answer">
               <p>Absolutely. All our breeding cats undergo comprehensive genetic testing including HCM screening and DNA panels for hereditary conditions. Every kitten leaves our cattery fully vaccinated, microchipped, and with a complete health record and pedigree certificate.</p>
             </div>
           </div>
           <div class="faq__item">
-            <div class="faq__question">How do I reserve a Maine Coon kitten?</div>
+            <button class="faq__question" type="button" aria-expanded="false">How do I reserve a Maine Coon kitten?</button>
             <div class="faq__answer">
               <p>Browse our <a href="kittens.html">available kittens</a>, then reach out via our <a href="contact.html">contact page</a>. We'll discuss the kitten's details, answer your questions, and guide you through the reservation and purchase process.</p>
             </div>
           </div>
           <div class="faq__item">
-            <div class="faq__question">What is included when I purchase a kitten?</div>
+            <button class="faq__question" type="button" aria-expanded="false">What is included when I purchase a kitten?</button>
             <div class="faq__answer">
               <p>Each kitten comes with full TICA pedigree documentation, vaccination records, genetic test results, a signed purchase contract with health guarantees, breeder support for the lifetime of your cat, and a kitten care starter pack with food and advice.</p>
             </div>
@@ -237,11 +241,43 @@
       </div>
     </section>
 
-    <!-- ===== CTA BANNER ===== -->
-    <section class="cta-banner">
-      <h2>Your Perfect Maine Coon is Waiting</h2>
-      <p>Blue-eyed, polydactyl, silver — or the classic gentle giant. Tell us what you're looking for and we'll find your match.</p>
-      <a href="contact.html" class="btn btn--primary">Get in Touch</a>
+    <!-- ===== CONTACT FORM ===== -->
+    <section id="home-contact" class="section section--white">
+      <div class="container">
+        <div class="section-header">
+          <h2>Contact Us</h2>
+          <p>Share your preferences and timeline, and we will help you find the right Maine Coon kitten.</p>
+        </div>
+        <form id="homepage-contact-form" class="form" action="https://formspree.io/f/xovqlvod" method="POST" style="margin: 0 auto;">
+          <input type="hidden" name="_next" value="https://www.wind-in-willows.com/thank-you.html" />
+          <div class="form__group">
+            <label class="form__label" for="home-name">Your name</label>
+            <input type="text" id="home-name" name="name" required class="form__input" placeholder="Enter your name" />
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="home-contact-method">WhatsApp or Email</label>
+            <input type="text" id="home-contact-method" name="contact" required class="form__input" placeholder="Your WhatsApp number or email" />
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="home-city">City</label>
+            <input type="text" id="home-city" name="city" required class="form__input" placeholder="Enter your city" />
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="home-adoption-type">Adoption type</label>
+            <select id="home-adoption-type" name="adoption_type" class="form__select">
+              <option value="">Select type</option>
+              <option value="Pet">Pet</option>
+              <option value="Breed">Breed</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="home-message">Your message (please include details)</label>
+            <textarea id="home-message" name="message" required class="form__textarea" placeholder="Please share your kitten preferences, timeline, household info, and any questions."></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Send Message</button>
+        </form>
+      </div>
     </section>
 
     <!-- ===== FOOTER ===== -->
@@ -268,43 +304,51 @@
       </div>
     </footer>
 
+    <script src="js/site.js"></script>
     <script>
       // Load kittens showcase
       fetch('kittens.json', { cache: 'no-store' }).then(function(r) { return r.json(); }).then(function(data) {
         var gallery = document.getElementById('showcase-gallery');
         data.slice(0, 4).forEach(function(item) {
           var cardImage = item.thumbnail || item.image;
+          var catName = item.name || '';
+          var catDesc = (item.desc || '').trim();
           var link = document.createElement('a');
-          link.href = 'kittenPage.html#' + encodeURIComponent(item.name);
+          link.href = 'kittenPage.html#' + encodeURIComponent(catName);
           link.className = 'card';
-          link.innerHTML = '<div class="card__image-wrapper"><img src="' + cardImage + '" alt="' + item.name + '" class="card__image" /><div class="card__overlay"><div class="card__name">' + item.name + '</div><div class="card__desc">' + item.desc.trim() + '</div></div></div>';
+
+          var imageWrapper = document.createElement('div');
+          imageWrapper.className = 'card__image-wrapper';
+
+          var image = document.createElement('img');
+          image.src = cardImage;
+          image.alt = catName;
+          image.className = 'card__image';
+          image.loading = 'lazy';
+          image.decoding = 'async';
+
+          var overlay = document.createElement('div');
+          overlay.className = 'card__overlay';
+
+          var name = document.createElement('div');
+          name.className = 'card__name';
+          name.textContent = catName;
+
+          var desc = document.createElement('div');
+          desc.className = 'card__desc';
+          desc.textContent = catDesc;
+
+          overlay.appendChild(name);
+          overlay.appendChild(desc);
+          imageWrapper.appendChild(image);
+          imageWrapper.appendChild(overlay);
+          link.appendChild(imageWrapper);
           gallery.appendChild(link);
         });
       }).catch(function(error) {
         console.error('Error loading kittens:', error);
       });
 
-      // Mobile menu toggle
-      document.querySelector('.navbar__burger').addEventListener('click', function() {
-        document.querySelector('.mobile-menu').classList.add('active');
-      });
-      document.querySelector('.mobile-menu__close').addEventListener('click', function() {
-        document.querySelector('.mobile-menu').classList.remove('active');
-      });
-
-      // FAQ accordion
-      document.querySelectorAll('.faq__question').forEach(function(question) {
-        question.addEventListener('click', function() {
-          var item = this.parentElement;
-          var isActive = item.classList.contains('active');
-          document.querySelectorAll('.faq__item').forEach(function(el) {
-            el.classList.remove('active');
-          });
-          if (!isActive) {
-            item.classList.add('active');
-          }
-        });
-      });
     </script>
 
   </body>

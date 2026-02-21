@@ -6,7 +6,8 @@
         "image": "public/cats/females/Daphna/391466483_6485413024889260_5605428295231652367_n-1500w.jpg",
         "images": [
             "public/cats/females/Daphna/391466483_6485413024889260_5605428295231652367_n-1500w.jpg"
-        ]
+        ],
+        "thumbnail": "public/cats/females/Daphna/391466483_6485413024889260_5605428295231652367_n-1500w-card.webp"
     },
     {
         "name": "Sophy",
@@ -15,7 +16,8 @@
         "image": "public/cats/females/Sophy/e07cff6a-0ea2-4ae7-9b4e-9dbdfd86975c.jpeg",
         "images": [
             "public/cats/females/Sophy/e07cff6a-0ea2-4ae7-9b4e-9dbdfd86975c.jpeg"
-        ]
+        ],
+        "thumbnail": "public/cats/females/Sophy/e07cff6a-0ea2-4ae7-9b4e-9dbdfd86975c-card.webp"
     },
     {
         "name": "Julia",
@@ -24,7 +26,8 @@
         "image": "public/cats/females/Julia/105189480_2892965560800709_7748770577302420317_n-1500w.jpg",
         "images": [
             "public/cats/females/Julia/105189480_2892965560800709_7748770577302420317_n-1500w.jpg"
-        ]
+        ],
+        "thumbnail": "public/cats/females/Julia/105189480_2892965560800709_7748770577302420317_n-1500w-card.webp"
     },
     {
         "name": "Smoky",
@@ -33,7 +36,8 @@
         "image": "public/cats/females/Smoky/1588bd2a-e744-4348-8d30-32005660e0a6-1500w.jpeg",
         "images": [
             "public/cats/females/Smoky/1588bd2a-e744-4348-8d30-32005660e0a6-1500w.jpeg"
-        ]
+        ],
+        "thumbnail": "public/cats/females/Smoky/1588bd2a-e744-4348-8d30-32005660e0a6-1500w-card.webp"
     },
     {
         "name": "Cassandra",
@@ -42,7 +46,8 @@
         "image": "public/cats/females/Cassandra/9de42972-2b42-4b03-8667-0c6d6802c0e1-1500h.jpeg",
         "images": [
             "public/cats/females/Cassandra/9de42972-2b42-4b03-8667-0c6d6802c0e1-1500h.jpeg"
-        ]
+        ],
+        "thumbnail": "public/cats/females/Cassandra/9de42972-2b42-4b03-8667-0c6d6802c0e1-1500h-card.webp"
     },
     {
         "name": "Yana",
@@ -51,6 +56,7 @@
         "image": "public/cats/females/Yana/1083ffae-0353-4da2-b031-fe3d763d8c0f-1500w.jpeg",
         "images": [
             "public/cats/females/Yana/1083ffae-0353-4da2-b031-fe3d763d8c0f-1500w.jpeg"
-        ]
+        ],
+        "thumbnail": "public/cats/females/Yana/1083ffae-0353-4da2-b031-fe3d763d8c0f-1500w-card.webp"
     }
 ]

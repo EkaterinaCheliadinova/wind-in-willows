@@ -281,6 +281,39 @@ def download_file(service, file_id: str, destination: Path) -> None:
             _, done = downloader.next_chunk()
 
 
+def find_existing_local_file(base_dir: Path, local_file_name: str, is_image: bool) -> Optional[Path]:
+    """Return an existing local file path for this Drive file if present."""
+    primary = base_dir / local_file_name
+    if primary.exists():
+        return primary
+
+    if not is_image:
+        return None
+
+    source_path = Path(local_file_name)
+    suffix = source_path.suffix.lower()
+    if suffix == ".jpg":
+        return None
+
+    # Common optimized output path (<stem>.jpg).
+    optimized_jpg = base_dir / f"{source_path.stem}.jpg"
+    if optimized_jpg.exists():
+        return optimized_jpg
+
+    # Alternate names used when collisions happened during prior optimization.
+    ext_slug = source_path.suffix.lstrip(".").lower()
+    if ext_slug:
+        alt = base_dir / f"{source_path.stem}_{ext_slug}.jpg"
+        if alt.exists():
+            return alt
+
+        prefixed = sorted(base_dir.glob(f"{source_path.stem}_{ext_slug}_*.jpg"))
+        if prefixed:
+            return prefixed[0]
+
+    return None
+
+
 def _resampling_lanczos():
     try:
         return Image.Resampling.LANCZOS  # Pillow >= 9
@@ -505,6 +538,8 @@ def main() -> int:
     kittens_payload: List[Dict[str, object]] = []
     used_kitten_names: Set[str] = set()
     used_local_dirs: Set[str] = set()
+    downloaded_files = 0
+    reused_files = 0
 
     for litter_folder in litter_folders:
         litter_label, litter_date = parse_litter_name(litter_folder.name)
@@ -523,8 +558,6 @@ def main() -> int:
                 local_dir_name = sanitize_segment(kitten_name)
             local_dir_name = ensure_unique(local_dir_name, used_local_dirs, sanitize_segment(litter_label))
             kitten_dir = output_dir / local_dir_name
-            if kitten_dir.exists():
-                shutil.rmtree(kitten_dir)
             kitten_dir.mkdir(parents=True, exist_ok=True)
 
             full_text = build_full_description(gender, details, litter_label, litter_date)
@@ -556,19 +589,31 @@ def main() -> int:
                     local_file_name, used_file_names, drive_file.id[:8]
                 )
                 local_file = kitten_dir / local_file_name
-                download_file(service, drive_file.id, local_file)
+                existing_local = find_existing_local_file(
+                    kitten_dir,
+                    local_file_name,
+                    is_image=is_image,
+                )
+                if existing_local:
+                    local_file = existing_local
+                    reused_files += 1
+                    print(f"  Reusing existing: {local_file.name}")
+                else:
+                    download_file(service, drive_file.id, local_file)
+                    downloaded_files += 1
                 if is_image:
-                    try:
-                        local_file = optimize_image_for_web(
-                            local_file,
-                            max_image_edge=args.max_image_edge,
-                            jpeg_quality=args.jpeg_quality,
-                        )
-                    except Exception as exc:
-                        print(
-                            f"Warning: could not optimize image '{local_file.name}': {exc}",
-                            file=sys.stderr,
-                        )
+                    if not existing_local:
+                        try:
+                            local_file = optimize_image_for_web(
+                                local_file,
+                                max_image_edge=args.max_image_edge,
+                                jpeg_quality=args.jpeg_quality,
+                            )
+                        except Exception as exc:
+                            print(
+                                f"Warning: could not optimize image '{local_file.name}': {exc}",
+                                file=sys.stderr,
+                            )
                     image_local_paths.append(local_file)
                     image_paths.append(to_web_path(local_file, project_root))
                 elif is_video:
@@ -631,6 +676,8 @@ def main() -> int:
 
     print(
         f"Done. Synced {len(kittens_payload)} kittens.\n"
+        f"Downloaded files: {downloaded_files}\n"
+        f"Reused existing files: {reused_files}\n"
         f"Media directory: {output_dir}\n"
         f"JSON file: {json_output}"
     )

@@ -6,6 +6,8 @@
     <meta name="theme-color" content="#ffffff" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>Our Males — Wind in Willows</title>
+    <meta name="description" content="Meet our male Maine Coon cats at Wind in Willows, including bloodlines, colors, and breeding quality details." />
+    <link rel="canonical" href="https://www.wind-in-willows.com/males.html" />
     <meta property="og:title" content="Our Males — Wind in Willows" />
     <meta property="twitter:card" content="summary_large_image" />
     <!-- Google tag (gtag.js) -->
@@ -40,17 +42,44 @@
 
     <footer class="footer"><div class="container"><div class="footer__inner"><div><div class="footer__brand">Wind in Willows</div><p class="footer__text">Professional Maine Coon Cattery</p></div><div class="footer__links"><a href="index.html" class="footer__link">Home</a><a href="about-us.html" class="footer__link">About Us</a><a href="males.html" class="footer__link">Males</a><a href="females.html" class="footer__link">Females</a><a href="kittens.html" class="footer__link">Kittens</a><a href="contact.html" class="footer__link">Contact</a><a href="policies.html" class="footer__link">Policies</a></div></div><div class="footer__bottom">&copy; 2009 Wind in Willows. All Rights Reserved.</div></div></footer>
 
+    <script src="js/site.js"></script>
     <script>
-      document.querySelector('.navbar__burger').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.add('active'); });
-      document.querySelector('.mobile-menu__close').addEventListener('click', function() { document.querySelector('.mobile-menu').classList.remove('active'); });
-
       fetch('males.json').then(function(r) { return r.json(); }).then(function(data) {
         var gallery = document.getElementById('gallery');
         data.forEach(function(item) {
+          var cardImage = item.thumbnail || item.image;
+          var catName = item.name || '';
+          var catDesc = item.desc || '';
           var link = document.createElement('a');
-          link.href = 'malePage.html#' + encodeURIComponent(item.name);
+          link.href = 'malePage.html#' + encodeURIComponent(catName);
           link.className = 'card';
-          link.innerHTML = '<div class="card__image-wrapper"><img src="' + item.image + '" alt="' + item.name + '" class="card__image" /><div class="card__overlay"><div class="card__name">' + item.name + '</div><div class="card__desc">' + item.desc + '</div></div></div>';
+
+          var imageWrapper = document.createElement('div');
+          imageWrapper.className = 'card__image-wrapper';
+
+          var image = document.createElement('img');
+          image.src = cardImage;
+          image.alt = catName;
+          image.className = 'card__image';
+          image.loading = 'lazy';
+          image.decoding = 'async';
+
+          var overlay = document.createElement('div');
+          overlay.className = 'card__overlay';
+
+          var name = document.createElement('div');
+          name.className = 'card__name';
+          name.textContent = catName;
+
+          var desc = document.createElement('div');
+          desc.className = 'card__desc';
+          desc.textContent = catDesc;
+
+          overlay.appendChild(name);
+          overlay.appendChild(desc);
+          imageWrapper.appendChild(image);
+          imageWrapper.appendChild(overlay);
+          link.appendChild(imageWrapper);
           gallery.appendChild(link);
         });
       }).catch(function(error) {
