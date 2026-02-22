@@ -192,6 +192,12 @@
       }
       form.dataset.enhanced = "true";
 
+      var pageInput = document.createElement("input");
+      pageInput.type = "hidden";
+      pageInput.name = "source_page";
+      pageInput.value = window.location.href;
+      form.appendChild(pageInput);
+
       form.addEventListener("submit", function (event) {
         event.preventDefault();
 
