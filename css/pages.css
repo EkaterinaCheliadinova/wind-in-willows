@@ -173,10 +173,34 @@
   .home-social-proof {
     padding-top: var(--space-2xl);
     padding-bottom: var(--space-2xl);
+    background: linear-gradient(180deg, #fffaf0 0%, #f3e4b5 100%);
+  }
+
+  .social-proof__header {
+    margin-bottom: var(--space-md);
   }
 
   .social-proof__grid {
     grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .social-proof__more-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .social-proof__card {
+    border-radius: var(--radius-md);
+    border-color: #e9d39b;
+    background: linear-gradient(180deg, #fffef9 0%, #fff7de 100%);
+    box-shadow: 0 8px 20px rgba(42, 31, 20, 0.1);
+  }
+
+  .social-proof__card::after {
+    top: 10px;
+    right: 14px;
+    color: rgba(196, 122, 42, 0.28);
   }
 
   .social-proof__card--featured,
@@ -187,6 +211,10 @@
   .social-proof__card--featured {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .social-proof__card--compact {
+    padding: var(--space-sm);
   }
 
   .social-proof__card--featured .social-proof__photo-wrap {
@@ -200,12 +228,37 @@
     height: 160px;
   }
 
-  .social-proof__quote {
-    font-size: 1.05rem;
+  .social-proof__card--featured .social-proof__card-content,
+  .social-proof__card--more .social-proof__card-content {
+    padding: var(--space-sm);
   }
 
-  .social-proof__more-grid {
-    grid-template-columns: 1fr;
+  .social-proof__quote {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .social-proof__author {
+    margin-top: 10px;
+    font-size: 0.85rem;
+  }
+
+  .social-proof__more-actions {
+    margin-top: var(--space-md);
+  }
+
+  .social-proof__more-actions .btn {
+    width: 100%;
+    max-width: 320px;
+    background-color: var(--color-brown-dark);
+    color: var(--color-cream-light);
+    border-color: var(--color-brown-dark);
+  }
+
+  .social-proof__more-actions .btn:hover {
+    background-color: var(--color-amber-dark);
+    border-color: var(--color-amber-dark);
+    color: var(--color-white);
   }
 
   .home-showcase {
@@ -219,6 +272,16 @@
 }
 
 @media (max-width: 480px) {
+  .social-proof__card--featured .social-proof__photo-wrap {
+    max-height: 260px;
+  }
+
+  .social-proof__card--more .social-proof__photo-wrap {
+    flex-basis: 120px;
+    width: 120px;
+    height: 120px;
+  }
+
   .home-showcase .gallery-grid {
     grid-template-columns: 1fr;
   }
