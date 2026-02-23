@@ -112,12 +112,11 @@
         <a href="index.html" class="navbar__logo">Wind in Willows</a>
         <div class="navbar__links">
           <a href="index.html" class="navbar__link">Home</a>
-          <a href="about-us.html" class="navbar__link">About Us</a>
+          <a href="kittens.html" class="navbar__link">Available Kittens</a>
           <a href="males.html" class="navbar__link">Males</a>
           <a href="females.html" class="navbar__link">Females</a>
-          <a href="kittens.html" class="navbar__link">Kittens</a>
+          <a href="about-us.html" class="navbar__link">About</a>
           <a href="contact.html" class="navbar__link">Contact</a>
-          <a href="policies.html" class="navbar__link">Policies</a>
         </div>
         <button class="navbar__burger" aria-label="Open menu">
           <span></span><span></span><span></span>
@@ -135,12 +134,11 @@
       </div>
       <div class="mobile-menu__links">
         <a href="index.html" class="mobile-menu__link">Home</a>
-        <a href="about-us.html" class="mobile-menu__link">About Us</a>
+        <a href="kittens.html" class="mobile-menu__link">Available Kittens</a>
         <a href="males.html" class="mobile-menu__link">Males</a>
         <a href="females.html" class="mobile-menu__link">Females</a>
-        <a href="kittens.html" class="mobile-menu__link">Kittens</a>
+        <a href="about-us.html" class="mobile-menu__link">About</a>
         <a href="contact.html" class="mobile-menu__link">Contact</a>
-        <a href="policies.html" class="mobile-menu__link">Policies</a>
       </div>
     </div>
 
@@ -149,9 +147,9 @@
       <div class="hero-home__image"></div>
       <div class="hero-home__content">
         <div class="container">
-          <h1 class="hero-home__title">Welcome to our home for Maine Coons</h1>
+          <h1 class="hero-home__title">Exceptional Maine Coon Kittens Raised with Care Since 2009</h1>
           <p class="hero-home__subtitle">
-            Rare blue-eyed, polydactyl &amp; silver Maine Coons — TICA registered, genetic tested, shipped worldwide since 2009.
+            Ethical family cattery specializing in rare blue-eyed and silver Maine Coons. Genetic testing, early socialization, and safe worldwide delivery.
           </p>
           <div class="hero-home__buttons">
             <a href="kittens.html" class="btn btn--primary">View Available Kittens</a>
@@ -167,6 +165,12 @@
         <div class="about-preview">
           <div class="about-preview__text">
             <h2>A Family Cattery Since 2009</h2>
+            <ul class="about-preview__highlights">
+              <li>TICA Registered Breeder</li>
+              <li>Genetic health testing (HCM, SMA, PKDef)</li>
+              <li>Raised in family environment</li>
+              <li>International delivery experience</li>
+            </ul>
             <p>
               Wind in Willows is a professional Maine Coon cattery founded in Moscow, specializing in blue-eyed Maine Coons, stunning silver coats, and rare polydactyl kittens.
             </p>
@@ -181,6 +185,55 @@
               <img src="public/external/awards.jpg" alt="Wind in Willows cattery awards and recognition" loading="lazy" decoding="async" />
             </picture>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOCIAL PROOF ===== -->
+    <section class="section home-social-proof">
+      <div class="container">
+        <div class="section-header social-proof__header">
+          <h2>Trusted by Families Around the World</h2>
+          <p>What families say after welcoming a Wind in Willows kitten into their home.</p>
+        </div>
+
+        <div id="home-reviews-grid" class="social-proof__grid">
+          <article class="social-proof__card social-proof__card--featured">
+            <div class="social-proof__photo-wrap">
+              <img src="public/reviews/512659892_9869966203100575_6666371894400377941_n.jpg" alt="Family with their Wind in Willows Maine Coon kitten" loading="lazy" decoding="async" />
+            </div>
+            <div class="social-proof__card-content">
+              <p class="social-proof__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+              <span class="sr-only">Five star review</span>
+              <blockquote class="social-proof__quote">
+                "From the first call to arrival day, everything was thoughtful and professional. Our kitten arrived confident, healthy, and perfectly socialized."
+              </blockquote>
+              <p class="social-proof__author">Sample family review - The Wilson Family, Boston, MA</p>
+            </div>
+          </article>
+
+          <article class="social-proof__card social-proof__card--compact">
+            <p class="social-proof__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+            <span class="sr-only">Five star review</span>
+            <blockquote class="social-proof__quote">
+              "We felt supported at every step. The health records were clear, communication was fast, and our boy settled in from day one."
+            </blockquote>
+            <p class="social-proof__author">Sample family review - The Carter Family, Toronto</p>
+          </article>
+
+          <article class="social-proof__card social-proof__card--compact">
+            <p class="social-proof__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+            <span class="sr-only">Five star review</span>
+            <blockquote class="social-proof__quote">
+              "Beautiful temperament, beautiful type, and true breeder integrity. Our silver girl is everything we hoped for and more."
+            </blockquote>
+            <p class="social-proof__author">Sample family review - The Martin Family, Paris</p>
+          </article>
+        </div>
+
+        <div id="home-reviews-more" class="social-proof__more-grid" aria-live="polite"></div>
+        <div class="social-proof__more-actions">
+          <button id="home-reviews-load-more" type="button" class="btn btn--outline" hidden>Load more reviews</button>
         </div>
       </div>
     </section>
@@ -347,6 +400,172 @@
         });
       }).catch(function(error) {
         console.error('Error loading kittens:', error);
+      });
+
+      // Load homepage reviews from JSON.
+      fetch('reviews.json', { cache: 'no-store' }).then(function(r) { return r.json(); }).then(function(data) {
+        if (!Array.isArray(data) || !data.length) {
+          return;
+        }
+
+        var validReviews = data.filter(function(item) {
+          return item && typeof item.text === 'string' && item.text.trim();
+        });
+        if (!validReviews.length) {
+          return;
+        }
+
+        var grid = document.getElementById('home-reviews-grid');
+        var moreGrid = document.getElementById('home-reviews-more');
+        var loadMoreButton = document.getElementById('home-reviews-load-more');
+        if (!grid || !moreGrid || !loadMoreButton) {
+          return;
+        }
+
+        var BATCH_SIZE = 3;
+
+        function hasImage(review) {
+          return !!(review && typeof review.image === 'string' && review.image.trim());
+        }
+
+        var featured = validReviews.find(hasImage) || validReviews[0];
+
+        var remaining = validReviews.filter(function(item) {
+          return item !== featured;
+        });
+        var remainingWithImage = remaining.filter(hasImage);
+        var remainingWithoutImage = remaining.filter(function(item) {
+          return !hasImage(item);
+        });
+
+        // Keep the top row as text-first compact cards, then prioritize image reviews in "Load more".
+        var compact = remainingWithoutImage.slice(0, 2);
+        var queue = remainingWithImage.concat(remainingWithoutImage.slice(2));
+        var loadedMoreCount = 0;
+
+        function toStars(rating) {
+          var n = Number(rating);
+          if (!isFinite(n)) {
+            n = 5;
+          }
+          n = Math.max(1, Math.min(5, Math.round(n)));
+          return new Array(n + 1).join('\u2605');
+        }
+
+        function buildAuthor(review) {
+          var author = (review.author || 'Wind in Willows Family').trim();
+          var location = (review.location || '').trim();
+          return location ? (author + ', ' + location) : author;
+        }
+
+        function createCard(review, variant, imageRight) {
+          var card = document.createElement('article');
+          if (variant === 'featured') {
+            card.className = 'social-proof__card social-proof__card--featured';
+          } else if (variant === 'compact') {
+            card.className = 'social-proof__card social-proof__card--compact';
+          } else {
+            card.className = 'social-proof__card social-proof__card--more';
+          }
+
+          if (imageRight) {
+            card.className += ' social-proof__card--image-right';
+          }
+
+          var imageSrc = '';
+          if (variant === 'featured') {
+            imageSrc = (review.image && review.image.trim()) || '';
+          } else if (variant === 'more') {
+            imageSrc = (review.image && review.image.trim()) || '';
+          }
+
+          if (imageSrc) {
+            var photoWrap = document.createElement('div');
+            photoWrap.className = 'social-proof__photo-wrap';
+
+            var img = document.createElement('img');
+            img.src = imageSrc;
+            img.alt = 'Family with their Wind in Willows Maine Coon kitten';
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            photoWrap.appendChild(img);
+            card.appendChild(photoWrap);
+          }
+
+          var content = document.createElement('div');
+          if (variant !== 'compact') {
+            content.className = 'social-proof__card-content';
+          }
+          var parent = variant === 'compact' ? card : content;
+
+          var stars = document.createElement('p');
+          stars.className = 'social-proof__stars';
+          stars.setAttribute('aria-hidden', 'true');
+          var starsText = toStars(review.rating);
+          stars.textContent = starsText;
+
+          var srOnly = document.createElement('span');
+          srOnly.className = 'sr-only';
+          srOnly.textContent = String(starsText.length) + ' star review';
+
+          var quote = document.createElement('blockquote');
+          quote.className = 'social-proof__quote';
+          quote.textContent = '"' + review.text.trim() + '"';
+
+          var author = document.createElement('p');
+          author.className = 'social-proof__author';
+          author.textContent = buildAuthor(review);
+
+          parent.appendChild(stars);
+          parent.appendChild(srOnly);
+          parent.appendChild(quote);
+          parent.appendChild(author);
+          if (variant !== 'compact') {
+            card.appendChild(content);
+          }
+          return card;
+        }
+
+        var fragment = document.createDocumentFragment();
+        fragment.appendChild(createCard(featured, 'featured', false));
+
+        compact.forEach(function(review) {
+          fragment.appendChild(createCard(review, 'compact', false));
+        });
+
+        grid.innerHTML = '';
+        grid.appendChild(fragment);
+
+        function updateLoadMoreButton() {
+          if (!queue.length) {
+            loadMoreButton.hidden = true;
+            return;
+          }
+          var nextCount = Math.min(BATCH_SIZE, queue.length);
+          loadMoreButton.textContent = 'Load ' + String(nextCount) + ' more review' + (nextCount === 1 ? '' : 's');
+          loadMoreButton.hidden = false;
+        }
+
+        function loadMoreReviews() {
+          if (!queue.length) {
+            updateLoadMoreButton();
+            return;
+          }
+          var nextBatch = queue.splice(0, BATCH_SIZE);
+          var moreFragment = document.createDocumentFragment();
+          nextBatch.forEach(function(review) {
+            var imageRight = loadedMoreCount % 2 === 1;
+            moreFragment.appendChild(createCard(review, 'more', imageRight));
+            loadedMoreCount += 1;
+          });
+          moreGrid.appendChild(moreFragment);
+          updateLoadMoreButton();
+        }
+
+        loadMoreButton.addEventListener('click', loadMoreReviews);
+        updateLoadMoreButton();
+      }).catch(function(error) {
+        console.error('Error loading reviews:', error);
       });
 
     </script>
