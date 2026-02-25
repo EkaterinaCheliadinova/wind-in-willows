@@ -180,6 +180,35 @@
     });
   }
 
+  function initAboutPuzzleGallery() {
+    var gallery = document.getElementById("about-puzzle-gallery");
+    if (!gallery) {
+      return;
+    }
+
+    var items = Array.prototype.slice.call(gallery.querySelectorAll(".about-puzzle__item"));
+    if (!items.length) {
+      return;
+    }
+
+    function shuffle(list) {
+      var shuffled = list.slice();
+      for (var i = shuffled.length - 1; i > 0; i -= 1) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = shuffled[i];
+        shuffled[i] = shuffled[j];
+        shuffled[j] = temp;
+      }
+      return shuffled;
+    }
+
+    var randomizedItems = shuffle(items);
+    gallery.innerHTML = "";
+    randomizedItems.forEach(function (item) {
+      gallery.appendChild(item);
+    });
+  }
+
   function initFormspreeForms() {
     var forms = document.querySelectorAll('form[action*="formspree.io"]');
     if (!forms.length) {
@@ -246,10 +275,177 @@
     });
   }
 
+  function buildSharedContactMarkup(instanceId, options) {
+    var resolvedOptions = options || {};
+    var isCompact = resolvedOptions.isCompact === true;
+    var includeTitle = resolvedOptions.includeTitle !== false;
+    var contactClass = isCompact ? "about-contact about-contact--compact" : "about-contact";
+    var idPrefix = "shared-contact-" + instanceId;
+    var nameId = idPrefix + "-name";
+    var phoneId = idPrefix + "-phone";
+    var emailId = idPrefix + "-email";
+    var cityId = idPrefix + "-city";
+    var adoptionTypeId = idPrefix + "-adoption-type";
+    var timelineId = idPrefix + "-timeline";
+    var messageId = idPrefix + "-message";
+    var parts = [];
+
+    parts.push('<div class="' + contactClass + '">');
+    if (includeTitle) {
+      parts.push('<h2>Contact Us</h2>');
+    }
+    parts.push('<p class="about-contact__intro">Choose the channel you prefer. We usually answer fastest through messaging apps.</p>');
+    parts.push('<div class="about-contact__channels" aria-label="Contact options">');
+    parts.push('<a href="mailto:wind.in.willows.mc@gmail.com" class="about-channel">');
+    parts.push('<span class="about-channel__icon"><img src="public/gmail-4561841_640.png" alt="" loading="lazy" decoding="async" /></span>');
+    parts.push('<span>Email</span>');
+    parts.push('</a>');
+    parts.push('<a href="https://wa.me/33780704461" target="_blank" rel="noreferrer noopener" class="about-channel">');
+    parts.push('<span class="about-channel__icon"><img src="public/icons8-whatsapp-48.png" alt="" loading="lazy" decoding="async" /></span>');
+    parts.push('<span>WhatsApp</span>');
+    parts.push('</a>');
+    parts.push('<a href="https://t.me/ekatyousha" target="_blank" rel="noreferrer noopener" class="about-channel">');
+    parts.push('<span class="about-channel__icon"><img src="public/Telegram-icon-on-transparent-background-PNG.png" alt="" loading="lazy" decoding="async" /></span>');
+    parts.push('<span>Telegram</span>');
+    parts.push('</a>');
+    parts.push('<a href="https://www.instagram.com/elenachelyadinova/" target="_blank" rel="noreferrer noopener" class="about-channel">');
+    parts.push('<span class="about-channel__icon"><img src="public/instagram-6338392_640.png" alt="" loading="lazy" decoding="async" /></span>');
+    parts.push('<span>Instagram</span>');
+    parts.push('</a>');
+    parts.push('<a href="https://www.viber.com/download/" target="_blank" rel="noreferrer noopener" class="about-channel" data-viber-number="+33780704461">');
+    parts.push('<span class="about-channel__icon"><img src="public/Viber_logo_2018_(without_text).svg.png" alt="" loading="lazy" decoding="async" /></span>');
+    parts.push('<span>Viber</span>');
+    parts.push('</a>');
+    parts.push('<a href="https://www.facebook.com/profile.php?id=61557493987171" target="_blank" rel="noreferrer noopener" class="about-channel">');
+    parts.push('<span class="about-channel__icon"><img src="public/icons8-facebook-48.png" alt="" loading="lazy" decoding="async" /></span>');
+    parts.push('<span>Messenger</span>');
+    parts.push('</a>');
+    parts.push('</div>');
+    parts.push('<p class="about-contact__copy-email">For email inquiries, please contact:<span class="about-contact__email-value">wind.in.willows.mc@gmail.com</span><span class="about-contact__email-hint">Tap to copy</span></p>');
+    parts.push('<h3 class="about-contact__form-title">Prefer a detailed request? Send the form below.</h3>');
+    parts.push('<form id="' + idPrefix + '-form" class="form about-contact__form" action="https://formspree.io/f/xovqlvod" method="POST">');
+    parts.push('<input type="hidden" name="_next" value="https://www.wind-in-willows.com/thank-you.html" />');
+    parts.push('<div class="form__group">');
+    parts.push('<label class="form__label" for="' + nameId + '">Your name</label>');
+    parts.push('<input type="text" id="' + nameId + '" name="name" required class="form__input" placeholder="Enter your name" />');
+    parts.push('</div>');
+    parts.push('<div class="form__group">');
+    parts.push('<label class="form__label" for="' + phoneId + '">Phone number</label>');
+    parts.push('<input type="tel" id="' + phoneId + '" name="phone" required class="form__input" placeholder="Enter your phone number" />');
+    parts.push('</div>');
+    parts.push('<div class="form__group">');
+    parts.push('<label class="form__label" for="' + emailId + '">Email address</label>');
+    parts.push('<input type="email" id="' + emailId + '" name="email" class="form__input" placeholder="Enter your email (optional)" />');
+    parts.push('</div>');
+    parts.push('<div class="form__group">');
+    parts.push('<label class="form__label" for="' + cityId + '">City</label>');
+    parts.push('<input type="text" id="' + cityId + '" name="city" required class="form__input" placeholder="Enter your city" />');
+    parts.push('</div>');
+    parts.push('<div class="form__group">');
+    parts.push('<label class="form__label" for="' + adoptionTypeId + '">Adoption type</label>');
+    parts.push('<select id="' + adoptionTypeId + '" name="adoption_type" class="form__select">');
+    parts.push('<option value="">Select type</option>');
+    parts.push('<option value="Pet">Pet</option>');
+    parts.push('<option value="Breed">Breed</option>');
+    parts.push('<option value="Other">Other</option>');
+    parts.push('</select>');
+    parts.push('</div>');
+    parts.push('<div class="form__group">');
+    parts.push('<label class="form__label" for="' + timelineId + '">When are you planning to bring a kitten home?</label>');
+    parts.push('<select id="' + timelineId + '" name="purchase_timeline" required class="form__select">');
+    parts.push('<option value="">Select your timeline</option>');
+    parts.push('<option value="Ready soon (next 2-4 weeks)">Ready soon (next 2-4 weeks)</option>');
+    parts.push('<option value="Planning for the next few months">Planning for the next few months</option>');
+    parts.push('<option value="Just exploring options">Just exploring options for now</option>');
+    parts.push('</select>');
+    parts.push('</div>');
+    parts.push('<div class="form__group">');
+    parts.push('<label class="form__label" for="' + messageId + '">Your message (please include details)</label>');
+    parts.push('<textarea id="' + messageId + '" name="message" required class="form__textarea" placeholder="Share your kitten preferences, desired colors, household details, and any questions."></textarea>');
+    parts.push('</div>');
+    parts.push('<button type="submit" class="btn btn--primary">Send Message</button>');
+    parts.push('</form>');
+    parts.push('</div>');
+
+    return parts.join("");
+  }
+
+  function initSharedContactSections() {
+    var mountPoints = document.querySelectorAll("[data-shared-contact-section]");
+    if (!mountPoints.length) {
+      return;
+    }
+
+    Array.prototype.forEach.call(mountPoints, function (mountPoint, index) {
+      var variant = (mountPoint.getAttribute("data-shared-contact-section") || "").toLowerCase();
+      var options = {
+        isCompact: false,
+        includeTitle: true
+      };
+
+      if (variant === "compact") {
+        options.isCompact = true;
+      } else if (variant === "compact-no-title" || variant === "home") {
+        options.isCompact = true;
+        options.includeTitle = false;
+      }
+
+      mountPoint.innerHTML = buildSharedContactMarkup(index + 1, options);
+    });
+  }
+
+  function initViberLinks() {
+    var viberLinks = document.querySelectorAll("a[data-viber-number]");
+    if (!viberLinks.length) {
+      return;
+    }
+
+    Array.prototype.forEach.call(viberLinks, function (link) {
+      link.addEventListener("click", function (event) {
+        var rawNumber = link.getAttribute("data-viber-number") || "";
+        var normalizedNumber = rawNumber.replace(/\s+/g, "");
+        if (!normalizedNumber) {
+          return;
+        }
+
+        var fallbackUrl = link.getAttribute("href") || "https://www.viber.com/download/";
+        var deepLinkUrl = "viber://chat/?number=" + encodeURIComponent(normalizedNumber);
+        var didHide = false;
+
+        function handleVisibilityChange() {
+          if (document.hidden) {
+            didHide = true;
+            cleanup();
+          }
+        }
+
+        function cleanup() {
+          clearTimeout(fallbackTimer);
+          document.removeEventListener("visibilitychange", handleVisibilityChange);
+        }
+
+        event.preventDefault();
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+
+        var fallbackTimer = setTimeout(function () {
+          cleanup();
+          if (!didHide) {
+            window.open(fallbackUrl, "_blank", "noopener,noreferrer");
+          }
+        }, 1100);
+
+        window.location.href = deepLinkUrl;
+      });
+    });
+  }
+
   function init() {
     initMobileMenu();
     initFaqAccordions();
+    initAboutPuzzleGallery();
+    initSharedContactSections();
     initFormspreeForms();
+    initViberLinks();
     initCtaTracking();
   }
 

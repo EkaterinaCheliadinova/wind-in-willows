@@ -12,6 +12,9 @@
     <meta name="author" content="Wind in Willows" />
     <meta property="og:title" content="Maine Coon Kittens for Sale | Wind in Willows" />
     <meta property="twitter:card" content="summary_large_image" />
+    <meta property="og:image" content="https://www.wind-in-willows.com/public/big_icon.png" />
+    <meta property="og:image:alt" content="Wind in Willows Maine Coon Cattery" />
+    <meta property="twitter:image" content="https://www.wind-in-willows.com/public/big_icon.png" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17730427004"></script>
     <script>
@@ -164,7 +167,7 @@
       <div class="container">
         <div class="about-preview">
           <div class="about-preview__text">
-            <h2>A Family Cattery Since 2009</h2>
+            <h2>Our Story</h2>
             <ul class="about-preview__highlights">
               <li>TICA Registered Breeder</li>
               <li>Genetic health testing (HCM, SMA, PKDef)</li>
@@ -172,16 +175,16 @@
               <li>International delivery experience</li>
             </ul>
             <p>
-              Wind in Willows is a professional Maine Coon cattery founded in Moscow, specializing in blue-eyed Maine Coons, stunning silver coats, and rare polydactyl kittens.
+              Our European Maine Coon breeding program is something we are very proud of at Wind in Willows. As a TICA-registered cattery established in 2009, we are dedicated to raising healthy, happy cats that reflect strong breed standards. Our cats have also earned champion titles at many cat exhibitions across Europe.
             </p>
             <p>
-              Our cats are TICA registered and undergo regular health checks including genetic testing to ensure they are healthy and free from hereditary diseases.
+              We believe every kitten deserves a loving home, and we work carefully to place our Maine Coon kittens with the best families possible. From an early age, kittens are handled and socialized daily so they grow into confident, well-balanced, and affectionate companions.
             </p>
             <a href="about-us.html" class="btn btn--outline">Learn More About Us</a>
           </div>
           <div class="about-preview__image">
             <picture>
-              <source srcset="public/external/awards.webp" type="image/webp" />
+              <source srcset="public/aboutus/awards.webp" type="image/webp" />
               <img src="public/external/awards.jpg" alt="Wind in Willows cattery awards and recognition" loading="lazy" decoding="async" />
             </picture>
           </div>
@@ -301,35 +304,7 @@
           <h2>Contact Us</h2>
           <p>Share your preferences and timeline, and we will help you find the right Maine Coon kitten.</p>
         </div>
-        <form id="homepage-contact-form" class="form" action="https://formspree.io/f/xovqlvod" method="POST" style="margin: 0 auto;">
-          <input type="hidden" name="_next" value="https://www.wind-in-willows.com/thank-you.html" />
-          <div class="form__group">
-            <label class="form__label" for="home-name">Your name</label>
-            <input type="text" id="home-name" name="name" required class="form__input" placeholder="Enter your name" />
-          </div>
-          <div class="form__group">
-            <label class="form__label" for="home-contact-method">WhatsApp or Email</label>
-            <input type="text" id="home-contact-method" name="contact" required class="form__input" placeholder="Your WhatsApp number or email" />
-          </div>
-          <div class="form__group">
-            <label class="form__label" for="home-city">City</label>
-            <input type="text" id="home-city" name="city" required class="form__input" placeholder="Enter your city" />
-          </div>
-          <div class="form__group">
-            <label class="form__label" for="home-adoption-type">Adoption type</label>
-            <select id="home-adoption-type" name="adoption_type" class="form__select">
-              <option value="">Select type</option>
-              <option value="Pet">Pet</option>
-              <option value="Breed">Breed</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div class="form__group">
-            <label class="form__label" for="home-message">Your message (please include details)</label>
-            <textarea id="home-message" name="message" required class="form__textarea" placeholder="Please share your kitten preferences, timeline, household info, and any questions."></textarea>
-          </div>
-          <button type="submit" class="btn btn--primary">Send Message</button>
-        </form>
+        <div data-shared-contact-section="home"></div>
       </div>
     </section>
 
