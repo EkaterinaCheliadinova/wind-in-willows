@@ -215,6 +215,30 @@
       return;
     }
 
+    function validatePhoneField(input) {
+      if (!input) {
+        return true;
+      }
+
+      var value = (input.value || "").trim();
+      if (!value) {
+        input.setCustomValidity("Please enter your phone number.");
+        return false;
+      }
+
+      var allowedPattern = /^[+0-9().\s-]+$/;
+      var digitsCount = value.replace(/\D/g, "").length;
+      var isValid = allowedPattern.test(value) && digitsCount >= 8 && digitsCount <= 15;
+
+      if (!isValid) {
+        input.setCustomValidity("Please enter a valid phone number (8-15 digits).");
+        return false;
+      }
+
+      input.setCustomValidity("");
+      return true;
+    }
+
     Array.prototype.forEach.call(forms, function (form) {
       if (form.dataset.enhanced === "true") {
         return;
@@ -227,11 +251,26 @@
       pageInput.value = window.location.href;
       form.appendChild(pageInput);
 
+      var phoneField = form.querySelector('input[name="phone"]');
+      if (phoneField) {
+        phoneField.addEventListener("input", function () {
+          phoneField.setCustomValidity("");
+        });
+        phoneField.addEventListener("blur", function () {
+          validatePhoneField(phoneField);
+        });
+      }
+
       form.addEventListener("submit", function (event) {
         event.preventDefault();
 
         var submitButton = form.querySelector('button[type="submit"]');
         var defaultButtonText = submitButton ? submitButton.textContent : "";
+
+        if (phoneField && !validatePhoneField(phoneField)) {
+          phoneField.reportValidity();
+          return;
+        }
 
         if (submitButton) {
           submitButton.disabled = true;
@@ -331,11 +370,11 @@
     parts.push('</div>');
     parts.push('<div class="form__group">');
     parts.push('<label class="form__label" for="' + phoneId + '">Phone number</label>');
-    parts.push('<input type="tel" id="' + phoneId + '" name="phone" required class="form__input" placeholder="Enter your phone number" />');
+    parts.push('<input type="tel" id="' + phoneId + '" name="phone" required inputmode="tel" autocomplete="tel" class="form__input" placeholder="Enter your phone number" />');
     parts.push('</div>');
     parts.push('<div class="form__group">');
     parts.push('<label class="form__label" for="' + emailId + '">Email address</label>');
-    parts.push('<input type="email" id="' + emailId + '" name="email" class="form__input" placeholder="Enter your email (optional)" />');
+    parts.push('<input type="email" id="' + emailId + '" name="email" required autocomplete="email" class="form__input" placeholder="Enter your email" />');
     parts.push('</div>');
     parts.push('<div class="form__group">');
     parts.push('<label class="form__label" for="' + cityId + '">City</label>');
