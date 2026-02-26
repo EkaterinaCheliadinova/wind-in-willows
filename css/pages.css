@@ -584,6 +584,154 @@
 }
 
 /* ===========================
+   GUIDE PAGES
+   =========================== */
+.maine-guide {
+  background-color: var(--color-white);
+}
+
+.maine-guide__content {
+  max-width: 900px;
+}
+
+.maine-guide__intro {
+  font-size: 1rem;
+  margin-bottom: var(--space-xs);
+}
+
+.guide-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin: var(--space-md) 0 var(--space-xl);
+}
+
+.guide-toc__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-cream-dark);
+  background-color: var(--color-cream-light);
+  color: var(--color-brown-dark);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.guide-toc__link:hover {
+  background-color: var(--color-cream);
+  color: var(--color-amber-dark);
+}
+
+.guide-block + .guide-block {
+  margin-top: var(--space-xl);
+}
+
+.guide-block h3 {
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xs);
+  font-size: 1.15rem;
+}
+
+.guide-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin: var(--space-sm) 0 var(--space-md);
+}
+
+.guide-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-cream-dark);
+  color: var(--color-brown-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.guide-table-wrap {
+  margin: var(--space-sm) 0;
+  overflow-x: auto;
+}
+
+.guide-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  background-color: var(--color-white);
+}
+
+.guide-table th,
+.guide-table td {
+  padding: 10px 12px;
+  border: 1px solid var(--color-cream-dark);
+  vertical-align: top;
+  text-align: left;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.guide-table th {
+  background-color: var(--color-cream);
+  color: var(--color-brown-dark);
+  font-weight: 700;
+}
+
+.guide-note {
+  font-size: 0.88rem;
+  color: var(--color-brown-light);
+}
+
+.guide-checklist {
+  margin-top: var(--space-sm);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-cream-dark);
+  background-color: var(--color-cream-light);
+}
+
+.guide-checklist h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-xs);
+}
+
+.guide-cta {
+  margin-top: var(--space-xl);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-cream-dark);
+  background-color: var(--color-cream-light);
+  text-align: center;
+}
+
+.guide-cta p {
+  margin-bottom: var(--space-sm);
+}
+
+@media (max-width: 768px) {
+  .guide-toc {
+    margin-bottom: var(--space-lg);
+  }
+
+  .guide-toc__link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .guide-table {
+    min-width: 560px;
+  }
+
+  .guide-checklist,
+  .guide-cta {
+    padding: var(--space-sm);
+  }
+}
+
+/* ===========================
    CAT DETAIL PAGES
    =========================== */
 .detail-section {
