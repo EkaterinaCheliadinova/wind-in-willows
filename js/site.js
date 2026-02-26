@@ -45,6 +45,76 @@
     openButton.setAttribute("aria-expanded", "false");
     menu.setAttribute("aria-hidden", "true");
 
+    function initGuideSubmenu() {
+      var linksContainer = menu.querySelector(".mobile-menu__links");
+      if (!linksContainer) {
+        return null;
+      }
+
+      var existingGroup = linksContainer.querySelector(".mobile-menu__group");
+      if (existingGroup) {
+        return null;
+      }
+
+      var guideLink = linksContainer.querySelector('.mobile-menu__link[href="guide-colors.html"]');
+      if (!guideLink) {
+        return null;
+      }
+
+      var submenuId = menu.id + "-guide-submenu";
+      var group = document.createElement("div");
+      group.className = "mobile-menu__group";
+
+      var toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "mobile-menu__link mobile-menu__link--toggle";
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-controls", submenuId);
+      toggle.innerHTML = '<span>Guide</span><span class="mobile-menu__caret" aria-hidden="true"></span>';
+
+      var submenu = document.createElement("div");
+      submenu.className = "mobile-menu__submenu";
+      submenu.id = submenuId;
+      submenu.hidden = true;
+
+      var currentPage = window.location.pathname.split("/").pop() || "index.html";
+      var guidePages = [
+        { href: "guide-colors.html", label: "Colors & EMS" },
+        { href: "guide-health-priorities.html", label: "Health & Genetics" },
+        { href: "guide-daily-care.html", label: "Daily Care" }
+      ];
+
+      guidePages.forEach(function (page) {
+        var submenuLink = document.createElement("a");
+        submenuLink.href = page.href;
+        submenuLink.className = "mobile-menu__link mobile-menu__sublink";
+        submenuLink.textContent = page.label;
+        if (currentPage === page.href) {
+          submenuLink.setAttribute("aria-current", "page");
+        }
+        submenu.appendChild(submenuLink);
+      });
+
+      toggle.addEventListener("click", function () {
+        var isOpen = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+        submenu.hidden = isOpen;
+      });
+
+      group.appendChild(toggle);
+      group.appendChild(submenu);
+      linksContainer.replaceChild(group, guideLink);
+
+      return {
+        close: function () {
+          toggle.setAttribute("aria-expanded", "false");
+          submenu.hidden = true;
+        }
+      };
+    }
+
+    var guideSubmenu = initGuideSubmenu();
+
     function getFocusable() {
       return Array.prototype.slice.call(menu.querySelectorAll(focusableSelector)).filter(function (el) {
         return el.offsetParent !== null;
@@ -60,6 +130,9 @@
       menu.setAttribute("aria-hidden", "true");
       openButton.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
+      if (guideSubmenu) {
+        guideSubmenu.close();
+      }
 
       if (previousFocus && typeof previousFocus.focus === "function") {
         previousFocus.focus();
@@ -110,7 +183,7 @@
     menu.addEventListener("click", function (event) {
       var clickTarget = event.target.nodeType === 1 ? event.target : event.target.parentElement;
       var linkTarget = clickTarget && typeof clickTarget.closest === "function"
-        ? clickTarget.closest(".mobile-menu__link")
+        ? clickTarget.closest(".mobile-menu a[href]")
         : null;
       if (linkTarget) {
         closeMenu();
