@@ -914,6 +914,13 @@
   margin-bottom: var(--space-sm);
 }
 
+.cta-banner h2::after {
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(255, 255, 255, 0.25) 100%);
+  box-shadow: none;
+}
+
 .cta-banner p {
   color: rgba(255, 255, 255, 0.85);
   margin-bottom: var(--space-md);
@@ -1016,6 +1023,13 @@
 .section-header {
   text-align: center;
   margin-bottom: var(--space-xl);
+}
+
+.section-header h2::after,
+.about-contact h2::after,
+.not-found h2::after {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-header p {

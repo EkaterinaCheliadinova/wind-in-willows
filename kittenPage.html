@@ -38,6 +38,10 @@
     <section class="section detail-section">
       <div class="container">
         <a href="kittens.html" class="back-link">&larr; Back to Kittens</a>
+        <div class="detail-intro">
+          <h2 id="kitten-profile-overview">Kitten Details</h2>
+          <p>Gender, color, and date of birth are listed below.</p>
+        </div>
         <div class="cat-detail" id="cat-detail"></div>
       </div>
     </section>
@@ -59,6 +63,7 @@
         if (cat) {
           var catLabel = cat.name || '';
           var description = cat.txt || cat.desc || '';
+          description = description.replace(/(^|\n)\s*Details\s*:/gi, '$1Type details :');
           var rawFullImages = Array.isArray(cat.images) ? cat.images : [];
           var rawThumbImages = Array.isArray(cat.thumbs) ? cat.thumbs : [];
           var fullImages = rawFullImages.length ? rawFullImages.slice() : rawThumbImages.slice();

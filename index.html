@@ -177,7 +177,7 @@
       <div class="container">
         <div class="about-preview">
           <div class="about-preview__text">
-            <h2>Our Story</h2>
+            <h2 id="about-wind-in-willows">Our Story</h2>
             <ul class="about-preview__highlights">
               <li>TICA Registered Breeder</li>
               <li>Genetic health testing (HCM, SMA, PKDef)</li>
@@ -206,7 +206,7 @@
     <section class="section home-social-proof">
       <div class="container">
         <div class="section-header social-proof__header">
-          <h2>Trusted by Families Around the World</h2>
+          <h2 id="maine-coon-family-reviews">Trusted by Families Around the World</h2>
           <p>What families say after welcoming a Wind in Willows kitten into their home.</p>
         </div>
 
@@ -255,7 +255,7 @@
     <section class="section home-showcase">
       <div class="container">
         <div class="section-header">
-          <h2>Available Kittens</h2>
+          <h2 id="featured-maine-coon-kittens">Available Kittens</h2>
           <p>Meet our current Maine Coon kittens — each one raised in our home, socialized with love, and ready to become the heart of yours. Our litters include rare blue-eyed, silver, and polydactyl varieties. All kittens come health-tested, vaccinated, and with full TICA pedigree.</p>
         </div>
         <div id="showcase-gallery" class="gallery-grid showcase-grid"></div>
@@ -265,11 +265,22 @@
       </div>
     </section>
 
+    <!-- ===== CONTACT FORM ===== -->
+    <section id="home-contact" class="section section--white">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="contact-wind-in-willows">Contact Us</h2>
+          <p>Share your preferences and timeline, and we will help you find the right Maine Coon kitten.<br />Choose the channel you prefer. We usually answer fastest through messaging apps.</p>
+        </div>
+        <div data-shared-contact-section="home"></div>
+      </div>
+    </section>
+
     <!-- ===== FAQ ===== -->
     <section class="section faq">
       <div class="container">
         <div class="section-header">
-          <h2>Common Questions</h2>
+          <h2 id="maine-coon-faq">FAQ</h2>
           <p>Everything you need to know about our Maine Coons</p>
         </div>
         <div class="faq__list">
@@ -304,17 +315,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ===== CONTACT FORM ===== -->
-    <section id="home-contact" class="section section--white">
-      <div class="container">
-        <div class="section-header">
-          <h2>Contact Us</h2>
-          <p>Share your preferences and timeline, and we will help you find the right Maine Coon kitten.</p>
-        </div>
-        <div data-shared-contact-section="home"></div>
       </div>
     </section>
 
@@ -369,7 +369,7 @@
           var overlay = document.createElement('div');
           overlay.className = 'card__overlay';
 
-          var name = document.createElement('div');
+          var name = document.createElement('h3');
           name.className = 'card__name';
           name.textContent = catName;
 

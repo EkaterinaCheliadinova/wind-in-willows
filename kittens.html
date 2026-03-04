@@ -39,6 +39,10 @@
 
     <section class="section section--white gallery-page">
       <div class="container">
+        <div class="section-header">
+          <h2 id="available-maine-coon-kittens">Available Maine Coon Kittens</h2>
+          <p>Explore our current litters with photos, personality notes, and reservation information.</p>
+        </div>
         <div class="info-box"><p>New to the breed? Read our <a href="guide-colors.html">Maine Coon Guide</a> for color basics, genetic testing, and health planning before choosing your kitten. For full details, open our combined <a href="guide-health-priorities.html">Guide: Health &amp; Genetics</a>.</p></div>
         <p style="text-align: center; margin-bottom: var(--space-lg); color: var(--color-brown-light);">We ensure every kitten goes to a loving home with clear guidelines, health guarantees, and a detailed contract. <a href="policies.html">Learn more about our policies</a>.</p>
         <div class="gallery-grid" id="gallery"></div>
@@ -78,7 +82,7 @@
           var overlay = document.createElement('div');
           overlay.className = 'card__overlay';
 
-          var name = document.createElement('div');
+          var name = document.createElement('h3');
           name.className = 'card__name';
           name.textContent = catName;
 

@@ -391,6 +391,7 @@
     var resolvedOptions = options || {};
     var isCompact = resolvedOptions.isCompact === true;
     var includeTitle = resolvedOptions.includeTitle !== false;
+    var includeIntro = resolvedOptions.includeIntro !== false;
     var contactClass = isCompact ? "about-contact about-contact--compact" : "about-contact";
     var idPrefix = "shared-contact-" + instanceId;
     var nameId = idPrefix + "-name";
@@ -406,7 +407,9 @@
     if (includeTitle) {
       parts.push('<h2>Contact Us</h2>');
     }
-    parts.push('<p class="about-contact__intro">Choose the channel you prefer. We usually answer fastest through messaging apps.</p>');
+    if (includeIntro) {
+      parts.push('<p class="about-contact__intro">Choose the channel you prefer. We usually answer fastest through messaging apps.</p>');
+    }
     parts.push('<div class="about-contact__channels" aria-label="Contact options">');
     parts.push('<a href="mailto:wind.in.willows.mc@gmail.com" class="about-channel">');
     parts.push('<span class="about-channel__icon"><img src="public/gmail-4561841_640.png" alt="" loading="lazy" decoding="async" /></span>');
@@ -492,14 +495,19 @@
       var variant = (mountPoint.getAttribute("data-shared-contact-section") || "").toLowerCase();
       var options = {
         isCompact: false,
-        includeTitle: true
+        includeTitle: true,
+        includeIntro: true
       };
 
       if (variant === "compact") {
         options.isCompact = true;
-      } else if (variant === "compact-no-title" || variant === "home") {
+      } else if (variant === "compact-no-title") {
         options.isCompact = true;
         options.includeTitle = false;
+      } else if (variant === "home") {
+        options.isCompact = true;
+        options.includeTitle = false;
+        options.includeIntro = false;
       }
 
       mountPoint.innerHTML = buildSharedContactMarkup(index + 1, options);
