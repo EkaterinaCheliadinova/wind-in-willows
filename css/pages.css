@@ -512,8 +512,8 @@
 /* ===========================
    MALES / FEMALES / KITTENS — gallery pages
    =========================== */
-.gallery-page .hero--page {
-  padding: var(--space-xl) 0;
+.section.gallery-page {
+  padding-top: var(--space-sm);
 }
 
 .gallery-page__intro {

@@ -1,6 +1,83 @@
 "use strict";
 
 (function () {
+  var VISITOR_ID_STORAGE_KEY = "wiw_visitor_id";
+
+  function safeLocalStorageGet(key) {
+    try {
+      return window.localStorage.getItem(key);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function safeLocalStorageSet(key, value) {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch (error) {
+      // Ignore storage failures and fall back to in-memory behavior.
+    }
+  }
+
+  function createVisitorId() {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      return window.crypto.randomUUID();
+    }
+    return "visitor-" + String(Date.now()) + "-" + String(Math.floor(Math.random() * 1000000));
+  }
+
+  function getVisitorId() {
+    var visitorId = safeLocalStorageGet(VISITOR_ID_STORAGE_KEY);
+    if (visitorId) {
+      return visitorId;
+    }
+
+    visitorId = createVisitorId();
+    safeLocalStorageSet(VISITOR_ID_STORAGE_KEY, visitorId);
+    return visitorId;
+  }
+
+  function stringToSeed(value) {
+    var hash = 2166136261;
+    for (var i = 0; i < value.length; i += 1) {
+      hash ^= value.charCodeAt(i);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function createSeededRandom(seed) {
+    var state = seed >>> 0;
+    return function () {
+      state = (state + 0x6D2B79F5) >>> 0;
+      var t = Math.imul(state ^ (state >>> 15), 1 | state);
+      t ^= t + Math.imul(t ^ (t >>> 7), 61 | t);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function shuffleForVisitor(items, scope) {
+    var list = Array.isArray(items) ? items.slice() : [];
+    if (list.length < 2) {
+      return list;
+    }
+
+    var seed = stringToSeed(getVisitorId() + "::" + (scope || "default"));
+    var random = createSeededRandom(seed);
+
+    for (var i = list.length - 1; i > 0; i -= 1) {
+      var j = Math.floor(random() * (i + 1));
+      var temp = list[i];
+      list[i] = list[j];
+      list[j] = temp;
+    }
+
+    return list;
+  }
+
+  window.WindInWillows = window.WindInWillows || {};
+  window.WindInWillows.shuffleForVisitor = shuffleForVisitor;
+
   function trackEvent(name, params) {
     if (typeof window.gtag === "function") {
       window.gtag("event", name, params || {});

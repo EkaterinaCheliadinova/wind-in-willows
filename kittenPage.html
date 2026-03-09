@@ -14,12 +14,13 @@
     <meta property="og:image:alt" content="Wind in Willows Maine Coon Cattery" />
     <meta property="twitter:image" content="https://www.wind-in-willows.com/public/big_icon.png" />
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17730427004"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BECBXW4R01"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag("js", new Date());
 
+      gtag("config", "G-BECBXW4R01");
       gtag("config", "AW-17730427004");
     </script>
     <link rel="shortcut icon" href="public/f4db6e9dfab5ee6ea8e1589625c13e30.png" type="image/png" sizes="32x32" />
@@ -64,7 +65,7 @@
           var catLabel = cat.name || '';
           var description = cat.txt || cat.desc || '';
           description = description.replace(/(^|\n)\s*Details\s*:/gi, '$1Type details :');
-          var rawFullImages = Array.isArray(cat.images) ? cat.images : [];
+          var rawFullImages = Array.isArray(cat.images) ? cat.images.slice(0, 8) : [];
           var rawThumbImages = Array.isArray(cat.thumbs) ? cat.thumbs : [];
           var fullImages = rawFullImages.length ? rawFullImages.slice() : rawThumbImages.slice();
           var previewImages = fullImages.map(function(fullUrl, index) {

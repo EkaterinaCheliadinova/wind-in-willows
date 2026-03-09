@@ -1,12 +1,22 @@
 import os
 import json
 
+MAX_IMAGES_PER_CAT = 8
+
 # Define the directories for kittens, males, and females
 base_dirs = {
     "kittens": "public/cats/kittens",
     "males": "public/cats/males",
     "females": "public/cats/females",
 }
+
+
+def is_sold_kitten_folder(cat_name, base_path):
+    return (
+        os.path.normpath(base_path) == os.path.normpath(base_dirs["kittens"])
+        and cat_name.lstrip().lower().startswith("s-")
+    )
+
 
 # Function to create JSON data for each category
 def create_json_data(base_path):
@@ -15,6 +25,9 @@ def create_json_data(base_path):
         cat_folder = os.path.join(base_path, cat_name)
         
         if os.path.isdir(cat_folder):
+            if is_sold_kitten_folder(cat_name, base_path):
+                continue
+
             # Read "desc.txt" and "txt.txt"
             desc_file = os.path.join(cat_folder, "desc.txt")
             txt_file = os.path.join(cat_folder, "full_description.txt")
@@ -23,11 +36,16 @@ def create_json_data(base_path):
             txt = open(txt_file, 'r').read() if os.path.exists(txt_file) else ""
             
             # Get image paths
-            image_files = [
-                os.path.join(cat_folder, f) 
-                for f in os.listdir(cat_folder) 
-                if f.endswith(('.jpg', '.jpeg', '.png'))
-            ]
+            image_files = sorted(
+                [
+                    os.path.join(cat_folder, f)
+                    for f in os.listdir(cat_folder)
+                    if f.lower().endswith(('.jpg', '.jpeg', '.png', '.webp'))
+                    and not f.lower().endswith('-card.webp')
+                ],
+                key=lambda path: os.path.getmtime(path),
+                reverse=True,
+            )[:MAX_IMAGES_PER_CAT]
             
             if not image_files:
                 continue  # Skip if no images

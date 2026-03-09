@@ -22,6 +22,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Set, Tuple
 
 try:
+    from google.auth.exceptions import RefreshError
     from google.auth.transport.requests import Request
     from google.oauth2 import service_account
     from google.oauth2.credentials import Credentials
@@ -66,6 +67,7 @@ class DriveFile:
     id: str
     name: str
     mime_type: str
+    modified_time: str = ""
 
 
 def parse_args() -> argparse.Namespace:
@@ -145,6 +147,12 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Use only thumbnail paths in kittens.json and remove full-size local images after thumbnail generation.",
     )
+    parser.add_argument(
+        "--max-images-per-kitten",
+        type=int,
+        default=8,
+        help="Download only this many newest images per kitten folder, based on Google Drive modified date (default: 8). Use 0 to keep all images.",
+    )
     return parser.parse_args()
 
 
@@ -166,7 +174,7 @@ def list_children(service, parent_id: str, folders_only: bool = False) -> List[D
             .list(
                 q=query,
                 spaces="drive",
-                fields="nextPageToken, files(id, name, mimeType)",
+                fields="nextPageToken, files(id, name, mimeType, modifiedTime)",
                 pageSize=1000,
                 orderBy="folder,name_natural",
                 supportsAllDrives=True,
@@ -181,6 +189,7 @@ def list_children(service, parent_id: str, folders_only: bool = False) -> List[D
                     id=item["id"],
                     name=item["name"],
                     mime_type=item["mimeType"],
+                    modified_time=item.get("modifiedTime", ""),
                 )
             )
         page_token = response.get("nextPageToken")
@@ -240,15 +249,26 @@ def build_drive_service(args: argparse.Namespace):
     if token_path.exists():
         creds = Credentials.from_authorized_user_file(str(token_path), SCOPES)
 
+    def run_oauth_flow() -> Credentials:
+        flow = InstalledAppFlow.from_client_secrets_file(str(credentials_path), SCOPES)
+        try:
+            return flow.run_local_server(port=0)
+        except Exception:
+            return flow.run_console()
+
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(str(credentials_path), SCOPES)
             try:
-                creds = flow.run_local_server(port=0)
-            except Exception:
-                creds = flow.run_console()
+                creds.refresh(Request())
+            except RefreshError as exc:
+                print(
+                    f"Stored Google Drive token is no longer valid ({exc}). "
+                    "Starting a new login flow.",
+                    file=sys.stderr,
+                )
+                creds = run_oauth_flow()
+        else:
+            creds = run_oauth_flow()
         token_path.write_text(creds.to_json(), encoding="utf-8")
 
     return build("drive", "v3", credentials=creds)
@@ -469,6 +489,11 @@ def parse_kitten_folder(folder_name: str) -> Tuple[str, str, str]:
     return folder_name.strip(), "", ""
 
 
+def is_sold_kitten_folder(folder_name: str) -> bool:
+    normalized = folder_name.lstrip()
+    return normalized.startswith(("s-", "S-"))
+
+
 def build_full_description(gender: str, details: str, litter_label: str, litter_date: str) -> str:
     lines: List[str] = []
     if gender:
@@ -516,6 +541,8 @@ def main() -> int:
         raise RuntimeError("--thumb-size must be a positive integer.")
     if args.jpeg_quality < 1 or args.jpeg_quality > 95:
         raise RuntimeError("--jpeg-quality must be between 1 and 95.")
+    if args.max_images_per_kitten < 0:
+        raise RuntimeError("--max-images-per-kitten must be 0 or greater.")
 
     project_root = Path.cwd()
     output_dir = Path(args.output_dir)
@@ -546,7 +573,9 @@ def main() -> int:
         kitten_folders = [
             child
             for child in list_children(service, litter_folder.id, folders_only=True)
-            if child.mime_type == FOLDER_MIME and child.name.casefold() not in skip_names
+            if child.mime_type == FOLDER_MIME
+            and child.name.casefold() not in skip_names
+            and not is_sold_kitten_folder(child.name)
         ]
 
         for kitten_folder in kitten_folders:
@@ -569,6 +598,12 @@ def main() -> int:
                 for child in list_children(service, kitten_folder.id, folders_only=False)
                 if child.mime_type != FOLDER_MIME
             ]
+            child_files.sort(
+                key=lambda item: (item.modified_time or "", item.name.casefold()),
+                reverse=True,
+            )
+
+            image_budget = args.max_images_per_kitten
 
             image_local_paths: List[Path] = []
             image_paths: List[str] = []
@@ -580,6 +615,8 @@ def main() -> int:
                 is_image = file_is_image(drive_file)
                 is_video = file_is_video(drive_file)
                 if not is_image and not is_video:
+                    continue
+                if is_image and image_budget and len(image_paths) >= image_budget:
                     continue
                 if is_video and args.skip_videos:
                     continue

@@ -14,6 +14,7 @@ run: serve
 serve:
 	@echo "Serving site at http://$(HOST):$(PORT)"
 	@$(PYTHON) -m http.server $(PORT) --bind $(HOST)
+# python -m http.server 3000 --bind 127.0.0.1
 
 sync-kittens:
 	@$(PYTHON) sync_kittens_from_drive.py $(if $(DRIVE_ROOT_ID),--root-folder-id $(DRIVE_ROOT_ID),) $(SYNC_FLAGS)
